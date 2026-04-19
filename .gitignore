@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# pytest
+.pytest_cache/
+.coverage
+
+# 大容量モデルファイル（.ckpt は数百MB、GitHubの100MB制限を超える）
+SRD-VC/
+
+# データセット
+/workspace/
+
+# エディタ・OS
+.DS_Store
+.vscode/
+*.swp

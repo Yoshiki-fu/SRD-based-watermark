@@ -1,0 +1,98 @@
+audio:
+  sample_rate: 16000
+  n_fft: 1024
+  hop_length: 256
+  n_mels: 80
+  fmin: 90
+  fmax: 7600
+
+encoder:
+  dim_freq: 80          # メルスペクトログラムのバンド数
+  dim_f0: 257           # one-hot F0の次元 (num_bins + 1)
+  dim_spk_emb: 256      # Speaker embedding次元
+  max_len_pad: 192      # パディング後の系列長 T
+  chs_grp: 16           # GroupNorm グループ数の分母
+
+  # ContentEncoder
+  dim_enc: 512          # Conv隠れ次元
+  dim_neck: 8           # BiLSTM hidden per direction → z_c dim = 16
+  freq: 8               # 時間方向ダウンサンプリング率 → T' = 192/8 = 24
+  content_n_conv: 3     # ConvBlock数
+  content_lstm_layers: 2
+
+  # RhythmEncoder
+  dim_enc_2: 128        # Conv隠れ次元
+  dim_neck_2: 1         # BiLSTM hidden per direction → z_r dim = 2
+  freq_2: 8
+
+  # F0Encoder
+  dim_enc_3: 256        # Conv隠れ次元
+  dim_neck_3: 32        # BiLSTM hidden per direction → z_f dim = 64
+  freq_3: 8
+  f0_n_conv: 3
+  f0_num_bins: 256      # voiced bin数; one-hot dim = f0_num_bins + 1 = 257
+
+speaker_encoder:
+  c_h: 128
+  kernel_size: 5
+  bank_size: 8
+  bank_scale: 1
+  c_bank: 128
+  n_conv_blocks: 6
+  n_dense_blocks: 6
+  subsample: [1, 2, 1, 2, 1, 2]
+  act: relu
+  dropout_rate: 0.0
+
+decoder:
+  dim_dec: 512       # BiLSTM hidden per direction (output = dim_dec * 2 = 1024)
+  lstm_layers: 3     # BiLSTM 積層数
+
+watermark:
+  num_bits: 16              # N=16 (D_c=16と次元一致)
+  dim_w: 16                 # WatermarkEncoder 出力次元 D_w
+  encoder_mlp_hidden: 32    # WatermarkEncoder MLP 中間層
+  extractor_mlp_hidden: 32  # WatermarkExtractor 後段 MLP 中間層
+  fusion_conv_kernel: 3     # FusionLayer Conv1d kernel_size
+  fusion_conv_channels: 16  # FusionLayer 中間/出力チャネル数
+
+losses:
+  reconstruction:
+    aux_weight: 1.0    # mel_before_postnet の補助 loss 重み（SRD-VC 準拠）
+  info_nce:
+    temperature: 0.1   # コサイン類似度のスケーリング温度 τ
+    symmetric: true    # 双方向 InfoNCE: (L_{z→W} + L_{W→z}) / 2
+    weight: 1.0        # L_total への重み係数（trainer 側で乗算）
+  vclub:
+    hidden_size: 512       # CLUBSample_reshape の MLP 隠れ層次元（SRD-VC 準拠）
+    lr: 3.0e-4             # MI 推定器の学習率（SRD-VC 準拠）
+    estimator_iters: 5     # 推定器の先行更新反復数（SRD-VC 準拠）
+    weight: 0.01           # g_loss への重み係数（SRD-VC 準拠）
+    load_pretrained: true  # 800000-G.ckpt から推定器をロードするか
+    include_rp: false      # rp_mi_net (z_r, z_f) を含めるか（Phase 2 拡張用）
+  adversarial:
+    alpha: 1.0        # GRL 勾配反転係数 λ（SRD-VC RevGrad default 準拠）
+    weight: 0.1       # g_loss への重み係数（SRD-VC lambda_cd=0.1 準拠）
+    num_classes: 110  # VCTK 話者数（/workspace/wav48_silence_trimmed のサブディレクトリ数で最終確認。DataLoader実装時に不一致があれば調整）
+    hidden_dim: 256   # SpeakerDiscriminator MLP 中間層次元（SRD-VC 準拠）
+    lr: 1.0e-4        # SpeakerDiscriminator の Optimizer_D 学習率
+
+distortion:
+  noise_std: 0.01         # log-mel 値域（~[-11, 2]）に対して軽微なノイズ強度
+  dropout_p: 0.1          # 要素単位 Dropout 率（フレーム単位ではなく mel-bin 値単位）
+  time_mask_width: 20     # T=192 の約 10%（固定幅; Phase 2 で一様分布化予定）
+  freq_mask_width: 10     # 80 mel bands の 12.5%（固定幅; Phase 2 で一様分布化予定）
+  downsample_rate: 0.5    # 2x ダウン→アップサンプリング（情報ボトルネック）
+  apply_prob: 0.8         # 各攻撃を独立に適用する確率
+  curriculum:
+    clean_end: 5          # Epoch 1-5: 攻撃なし
+    light_end: 15         # Epoch 6-15: 軽微（noise + dropout）
+                          # Epoch 16+: 強（全攻撃）
+
+training:
+  batch_size: 16
+  g_lr: 1.0e-4          # 新規パラメータ用学習率 (WM Encoder, Fusion Layer, Extractor)
+  content_lr: 1.0e-5    # ContentEncoder fine-tuning用
+  decoder_lr: 1.0e-5    # Decoder fine-tuning用
+  beta1: 0.9
+  beta2: 0.999
