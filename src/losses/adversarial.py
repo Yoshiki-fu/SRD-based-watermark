@@ -51,7 +51,8 @@ class GradientReversalLayer(nn.Module):
 
     def __init__(self, alpha: float = 1.0) -> None:
         super().__init__()
-        self.alpha = torch.tensor(alpha, requires_grad=False)
+        # register_buffer により .to(device) で自動移動、state_dict にも含まれる
+        self.register_buffer('alpha', torch.tensor(alpha, requires_grad=False))
 
     def forward(self, input_: torch.Tensor) -> torch.Tensor:
         """

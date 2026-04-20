@@ -59,6 +59,11 @@ watermark:
 losses:
   reconstruction:
     aux_weight: 1.0    # mel_before_postnet の補助 loss 重み（SRD-VC 準拠）
+    weight: 1.0        # lambda_rec: loss_total への重み係数
+  # NOTE: losses.watermark はトップレベルの watermark セクション（num_bits等）とは別。
+  #       トップレベル watermark はモデル構造設定、こちらは学習時の損失重み設定。
+  watermark:
+    weight: 1.0        # lambda_wm: loss_total への重み係数
   info_nce:
     temperature: 0.1   # コサイン類似度のスケーリング温度 τ
     symmetric: true    # 双方向 InfoNCE: (L_{z→W} + L_{W→z}) / 2
@@ -89,6 +94,10 @@ distortion:
     light_end: 15         # Epoch 6-15: 軽微（noise + dropout）
                           # Epoch 16+: 強（全攻撃）
 
+data:
+  num_samples: 100   # MockVCTKDataset サイズ（実 VCTK では使用しない）
+  num_workers: 0     # DataLoader num_workers（Phase 1 想定値）
+
 training:
   batch_size: 16
   g_lr: 1.0e-4          # 新規パラメータ用学習率 (WM Encoder, Fusion Layer, Extractor)
@@ -96,3 +105,9 @@ training:
   decoder_lr: 1.0e-5    # Decoder fine-tuning用
   beta1: 0.9
   beta2: 0.999
+  num_epochs: 100
+  val_every_n_epochs: 5
+  log_every_n_iters: 50
+  checkpoint_dir: checkpoints
+  checkpoint_every_n_epochs: 10
+  pretrained_ckpt: SRD-VC/My_model/my_demo/800000-G.ckpt

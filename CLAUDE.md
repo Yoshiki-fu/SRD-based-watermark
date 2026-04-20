@@ -136,16 +136,7 @@ def forward(self, x: torch.Tensor) -> torch.Tensor:
   - SRD-VCオリジナルの分離Loss（vCLUB/GRL）を併用
   - Content Encoderの分離性維持のため
 
-### 学習戦略
-- Optimizer_G:
-  - Content Encoder (lr=1e-5)
-  - Decoder (lr=1e-5、fine-tuning)
-  - Watermark Encoder, Fusion Layer, Extractor (lr=1e-4)
-- Optimizer_D:
-  - Speaker Discriminator（GRL後段）
-  - vCLUB推定器
-- 更新順序: Optimizer_D → Optimizer_G
-- vCLUBの変分近似ネットワークはメインネットワークより先に更新
+
 
 ### 攻撃カリキュラム（微分可能な攻撃レイヤー）
 - Epoch 1-5: 攻撃なし（クリーンな再構築と抽出）
@@ -177,5 +168,6 @@ def forward(self, x: torch.Tensor) -> torch.Tensor:
 - [x] InfoNCE Loss
 - [x] vCLUB Loss（cp_mi_net + rc_mi_net、推定器weightsロード済み）
 - [×] Adversarial Loss（GRL + Speaker Discriminator）
-- [ ] training_step（2 Optimizer交互更新）
+- [x] MockVCTKDataset（Phase 1動作確認用、無声20%含む）
+- [ ] training_step（2 Optimizer交互更新、中程度スコープ、checkpoint機能付き）
 

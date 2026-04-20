@@ -14,7 +14,14 @@ SRD-VC/
 # データセット
 /workspace/
 
+# チェックポイント
+checkpoints/
+
+# Claude Code設定
+.claude/
+
 # エディタ・OS
 .DS_Store
 .vscode/
 *.swp
+checkpoints/*.pt
