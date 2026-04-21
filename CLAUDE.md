@@ -26,7 +26,7 @@ vc-watermark/
 │         └── my_demo/
 │              ├── 640000-P.ckpt                      # pre-trained pitch decoder
 │              ├── 800000-G.ckpt                      # pre-trained SRD-VC (Generator)
-│              └── checkpoint_step001000000_ema.pth   # pre-trained vocoder (Phase 1未使用)
+│              └── checkpoint_step001000000_ema.pth   # pre-trained vocoder
 ├── configs/
 │   └── default.yaml       # ハイパーパラメータ
 ├── src/
@@ -83,17 +83,6 @@ def forward(self, x: torch.Tensor) -> torch.Tensor:
 
 ## 設計上の重要な制約
 
-### モデル構造
-- Content EncoderにはHuBERT等の外部SSLモデルを使わない
-  （SRDVCオリジナルのCNN/RNN構成を使用。理由: 他エンコーダとの
-  MI制御バランスを崩さないため）
-- 透かしはZ_cにのみFusionする。Z_s, Z_r, Z_fには一切混ぜない
-- Watermark ExtractorはContent Encoderと完全に独立
-  （weight共有・コピーなし。MI制御Lossとの勾配干渉を避けるため）
-- Extractor前段はContent Encoderと同じアーキテクチャ（重みは独立）。
-  中間特徴 ẑ_c: (B, T', D_c) を出力し、後段はGlobal Average Pooling
-  → MLP → W_hat (B, N) の構造
-
 ### 事前学習weightsの利用
 - `SRD-VC/My_model/my_demo/800000-G.ckpt` から以下をロード:
   - Content Encoder: 学習可能（低学習率 lr=1e-5）
@@ -113,28 +102,12 @@ def forward(self, x: torch.Tensor) -> torch.Tensor:
   すべてメルスペクトログラム上で動作
 - Phase 2以降でvocoderと波形ベース攻撃（kNN-VC等）への拡張を検討
 
-### 透かし設計
-- ビット数: N=16（D_c=16 と次元一致）
-- 透かし生成: `torch.randperm(2**16)[:B]` でユニーク整数をサンプリング
-  し16ビットバイナリに変換（In-batch negativesのFalse Negative回避）
+## Phase 2前処理の方針
+- SRD-VCの前処理を参考にする
+- メル/F0の事前計算を scripts/preprocess_vctk.py で実装
+- 出力形式は .npy または .pt で /workspace/ 配下に保存
+- VCTK全44,455ファイル（110話者）が対象
 
-### Loss設計
-- L_rec: Mel-Spectrogram L1（元メルと再合成メルの比較）
-- L_wm: BCE (Bit Error)
-- L_MI_max: InfoNCE(z_c', W) — 透かしと言語内容の交絡強制
-  - z_c' を時間平均 (B, 24, 16) → (B, 16)
-  - W (B, 16) とコサイン類似度ベースのcontrastive loss
-  - 負例: In-batch negatives
-- L_MI_min (z_cからのSpeaker情報抑制): GRL + Speaker Discriminator
-  - 対象1: ContentEncoder出力 z_c (B, 24, 16)
-  - 対象2: Extractor前段ContentEncoder通過後の ẑ_c (B, 24, 16)
-  - 両方に独立してGRL + SpeakerClassifierを適用
-  - 理由: vCLUBは時系列特徴量(z_r, z_f)との分離専用であり、
-    Speaker分離はGRL+Classifierで行う。z_cにGRLをかけないと
-    z_cにSpeaker情報が残存し、SRD-VCの分離理論が崩壊する。  
-- L_disentangle: Z_c（透かし混入前）から Z_s, Z_r, Z_f への漏洩抑制
-  - SRD-VCオリジナルの分離Loss（vCLUB/GRL）を併用
-  - Content Encoderの分離性維持のため
 
 
 
@@ -169,5 +142,13 @@ def forward(self, x: torch.Tensor) -> torch.Tensor:
 - [x] vCLUB Loss（cp_mi_net + rc_mi_net、推定器weightsロード済み）
 - [×] Adversarial Loss（GRL + Speaker Discriminator）
 - [x] MockVCTKDataset（Phase 1動作確認用、無声20%含む）
-- [ ] training_step（2 Optimizer交互更新、中程度スコープ、checkpoint機能付き）
+- [×] training_step（2 Optimizer交互更新、中程度スコープ、checkpoint機能付き）
+- [x] VCTK前処理スクリプト（SRD-VC完全準拠、per-utterance F0正規化、可変長保存）
+- [x] 前処理実行完了（87,532ファイル：train 79,242 / val 500 / test 7,790）
+- [ ] 実VCTK DataLoader
+- [ ] overfit検証（1サンプル）
+- [ ] フル学習- [ ] VCTK前処理スクリプト（mel/f0事前計算、SRD-VC準拠）
+- [ ] 実VCTK DataLoader
+- [ ] overfit検証（1サンプル）
+- [ ] フル学習
 

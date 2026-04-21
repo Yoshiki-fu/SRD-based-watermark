@@ -94,6 +94,16 @@ distortion:
     light_end: 15         # Epoch 6-15: 軽微（noise + dropout）
                           # Epoch 16+: 強（全攻撃）
 
+preprocess:
+  min_frames: 64          # 短い発話の警告閾値（フレーム数）
+  num_workers: 8          # multiprocessing Pool ワーカー数
+  highpass_cutoff: 30     # Butterworth ハイパスフィルタ カットオフ [Hz]
+  highpass_order: 5       # Butterworth フィルタ次数
+  f0_min_male: 50         # RAPT 最小 F0 [Hz] — 男性話者
+  f0_max_male: 250        # RAPT 最大 F0 [Hz] — 男性話者
+  f0_min_female: 100      # RAPT 最小 F0 [Hz] — 女性話者
+  f0_max_female: 600      # RAPT 最大 F0 [Hz] — 女性話者
+
 data:
   num_samples: 100   # MockVCTKDataset サイズ（実 VCTK では使用しない）
   num_workers: 0     # DataLoader num_workers（Phase 1 想定値）
