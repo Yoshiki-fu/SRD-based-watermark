@@ -1,11 +1,28 @@
 """
-src/data/mock_dataset.py の shape・dtype・再現性・DataLoader 統合テスト。
+src/data/mock_dataset.py および src/data/vctk_dataset.py の
+shape・dtype・再現性・DataLoader 統合テスト。
 """
 
+import os
+
+import pytest
 import torch
+import yaml
 from torch.utils.data import DataLoader
 
-from src.data import MockVCTKDataset
+from src.data import MockVCTKDataset, VCTKDataset
+
+# VCTKDataset テストは前処理済みデータが存在する場合のみ実行
+_VCTK_ROOT = "/workspace/vctk_preprocessed"
+_vctk_available = pytest.mark.skipif(
+    not os.path.exists(os.path.join(_VCTK_ROOT, "metadata.json")),
+    reason="VCTK 前処理済みデータが見つかりません: " + _VCTK_ROOT,
+)
+
+
+def _load_config() -> dict:
+    with open("configs/default.yaml") as f:
+        return yaml.safe_load(f)
 
 
 # ── fixtures ──────────────────────────────────────────────────────────────────
@@ -107,3 +124,61 @@ def test_dataloader_batch_shapes() -> None:
     assert f0_norm.shape == (16, 192), f"batched f0_norm shape: {f0_norm.shape}"
     assert speaker_id.shape == (16,), f"batched speaker_id shape: {speaker_id.shape}"
     assert speaker_id.dtype == torch.int64, f"batched speaker_id dtype: {speaker_id.dtype}"
+
+
+# ── VCTKDataset テスト ────────────────────────────────────────────────────────
+
+@_vctk_available
+def test_vctk_train_shapes() -> None:
+    cfg = _load_config()
+    ds = VCTKDataset(_VCTK_ROOT, "train", cfg)
+    mel, f0, spk = ds[0]
+
+    assert mel.shape == (80, 192), f"mel shape: {mel.shape}"
+    assert f0.shape == (192,), f"f0 shape: {f0.shape}"
+    assert mel.dtype == torch.float32, f"mel dtype: {mel.dtype}"
+    assert f0.dtype == torch.float32, f"f0 dtype: {f0.dtype}"
+    assert spk.dtype == torch.int64, f"spk dtype: {spk.dtype}"
+    assert spk.shape == (), f"spk should be scalar, got shape: {spk.shape}"
+
+
+@_vctk_available
+def test_vctk_val_deterministic() -> None:
+    cfg = _load_config()
+    ds = VCTKDataset(_VCTK_ROOT, "val", cfg)
+    mel1, f0_1, spk1 = ds[0]
+    mel2, f0_2, spk2 = ds[0]
+
+    assert torch.allclose(mel1, mel2), "val mel: 同一 idx で異なる結果"
+    assert torch.allclose(f0_1, f0_2), "val f0: 同一 idx で異なる結果"
+    assert spk1 == spk2, "val speaker_id: 同一 idx で異なる結果"
+
+
+@_vctk_available
+def test_vctk_dataloader_batch() -> None:
+    cfg = _load_config()
+    ds = VCTKDataset(_VCTK_ROOT, "train", cfg)
+    dl = DataLoader(ds, batch_size=4, num_workers=0, drop_last=True)
+    mel, f0, spk = next(iter(dl))
+
+    assert mel.shape == (4, 80, 192), f"batched mel shape: {mel.shape}"
+    assert f0.shape == (4, 192), f"batched f0 shape: {f0.shape}"
+    assert spk.shape == (4,), f"batched spk shape: {spk.shape}"
+    assert spk.dtype == torch.int64, f"batched spk dtype: {spk.dtype}"
+
+
+@_vctk_available
+def test_vctk_interface_compatible_with_mock() -> None:
+    cfg = _load_config()
+    vctk_ds = VCTKDataset(_VCTK_ROOT, "val", cfg)
+    mock_ds = MockVCTKDataset(num_samples=1)
+
+    v_mel, v_f0, v_spk = vctk_ds[0]
+    m_mel, m_f0, m_spk = mock_ds[0]
+
+    assert v_mel.shape == m_mel.shape, f"mel shape mismatch: {v_mel.shape} vs {m_mel.shape}"
+    assert v_f0.shape == m_f0.shape, f"f0 shape mismatch: {v_f0.shape} vs {m_f0.shape}"
+    assert v_mel.dtype == m_mel.dtype, f"mel dtype mismatch: {v_mel.dtype} vs {m_mel.dtype}"
+    assert v_f0.dtype == m_f0.dtype, f"f0 dtype mismatch: {v_f0.dtype} vs {m_f0.dtype}"
+    assert v_spk.dtype == m_spk.dtype, f"spk dtype mismatch: {v_spk.dtype} vs {m_spk.dtype}"
+    assert v_spk.shape == m_spk.shape, f"spk shape mismatch: {v_spk.shape} vs {m_spk.shape}"
