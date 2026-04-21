@@ -67,9 +67,11 @@ class VCWatermarkTrainer:
         ckpt_path: Optional[str] = None,
         resume_from: Optional[str] = None,
         device: Optional[str] = None,
+        fixed_watermark_seed: Optional[int] = None,
     ) -> None:
         self.cfg = cfg
         self.device = _resolve_device(device)
+        self._fixed_watermark_seed = fixed_watermark_seed
         self._setup_logger()
 
         resolved_ckpt = _resolve_ckpt_path(cfg, ckpt_path)
@@ -251,13 +253,21 @@ class VCWatermarkTrainer:
         先頭 batch_size 個を選ぶ。これにより In-batch negatives の
         False Negative（同一透かしが複数存在する状況）を完全に回避する。
 
+        fixed_watermark_seed が指定された場合は毎回同じ透かしを返す
+        （overfit 検証用）。
+
         Args:
             batch_size: バッチサイズ B (最大 65536)
         Returns:
             (B, 16) float {0.0, 1.0}
         """
         num_bits = self.cfg.get('watermark', {}).get('num_bits', 16)
-        indices = torch.randperm(2 ** num_bits)[:batch_size]
+        if self._fixed_watermark_seed is not None:
+            gen = torch.Generator()
+            gen.manual_seed(self._fixed_watermark_seed)
+            indices = torch.randperm(2 ** num_bits, generator=gen)[:batch_size]
+        else:
+            indices = torch.randperm(2 ** num_bits)[:batch_size]
         bits = ((indices.unsqueeze(1) >> torch.arange(num_bits)) & 1).float()
         return bits.to(self.device)
 

@@ -1,0 +1,104 @@
+audio:
+  sample_rate: 16000
+  n_fft: 1024
+  hop_length: 256
+  n_mels: 80
+  fmin: 90
+  fmax: 7600
+
+encoder:
+  dim_freq: 80
+  dim_f0: 257
+  dim_spk_emb: 256
+  max_len_pad: 192
+  chs_grp: 16
+  dim_enc: 512
+  dim_neck: 8
+  freq: 8
+  content_n_conv: 3
+  content_lstm_layers: 2
+  dim_enc_2: 128
+  dim_neck_2: 1
+  freq_2: 8
+  dim_enc_3: 256
+  dim_neck_3: 32
+  freq_3: 8
+  f0_n_conv: 3
+  f0_num_bins: 256
+
+speaker_encoder:
+  c_h: 128
+  kernel_size: 5
+  bank_size: 8
+  bank_scale: 1
+  c_bank: 128
+  n_conv_blocks: 6
+  n_dense_blocks: 6
+  subsample: [1, 2, 1, 2, 1, 2]
+  act: relu
+  dropout_rate: 0.0
+
+decoder:
+  dim_dec: 512
+  lstm_layers: 3
+
+watermark:
+  num_bits: 16
+  dim_w: 16
+  encoder_mlp_hidden: 32
+  extractor_mlp_hidden: 32
+  fusion_conv_kernel: 3
+  fusion_conv_channels: 16
+
+losses:
+  reconstruction:
+    aux_weight: 1.0
+    weight: 1.0
+  watermark:
+    weight: 1.0
+  info_nce:
+    temperature: 0.1
+    symmetric: true
+    weight: 1.0
+  vclub:
+    hidden_size: 512
+    lr: 3.0e-4
+    estimator_iters: 5
+    weight: 0.01
+    load_pretrained: true
+    include_rp: false
+  adversarial:
+    alpha: 1.0
+    weight: 0.1
+    num_classes: 100
+    hidden_dim: 256
+    lr: 1.0e-4
+
+distortion:
+  noise_std: 0.01
+  dropout_p: 0.1
+  time_mask_width: 20
+  freq_mask_width: 10
+  downsample_rate: 0.5
+  apply_prob: 0.8
+  curriculum:
+    clean_end: 5
+    light_end: 15
+
+data:
+  num_samples: 100
+  num_workers: 0
+
+training:
+  batch_size: 4
+  g_lr: 1.0e-3
+  content_lr: 1.0e-4
+  decoder_lr: 1.0e-4
+  beta1: 0.9
+  beta2: 0.999
+  num_epochs: 200
+  val_every_n_epochs: 10
+  log_every_n_iters: 1
+  checkpoint_dir: checkpoints_overfit
+  checkpoint_every_n_epochs: 50
+  pretrained_ckpt: SRD-VC/My_model/my_demo/800000-G.ckpt
