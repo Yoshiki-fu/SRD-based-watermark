@@ -114,6 +114,26 @@ def main() -> None:
         action='store_true',
         help='毎 iteration 同じ透かし W を使用（overfit 検証用）',
     )
+    parser.add_argument(
+        '--bypass_decoder',
+        action='store_true',
+        help='診断モード: Decoder/Attack/Extractor をスキップし '
+             'z_c_fused → BypassExtractor → W_hat で直接復元する',
+    )
+    parser.add_argument(
+        '--boost_watermark_lr',
+        type=float,
+        default=None,
+        metavar='N',
+        help='WM Encoder / FusionLayer / Extractor の学習率を base_lr × N 倍にする '
+             '（例: --boost_watermark_lr 10 → 1e-3 × 10 = 1e-2）',
+    )
+    parser.add_argument(
+        '--disable_vclub_adv',
+        action='store_true',
+        help='vCLUB と Adversarial Loss を無効化し '
+             'Reconstruction + Watermark + InfoNCE のみで学習する',
+    )
     args = parser.parse_args()
 
     with open(args.config) as f:
@@ -159,6 +179,9 @@ def main() -> None:
         resume_from=args.resume,
         device=args.device,
         fixed_watermark_seed=0 if args.fixed_watermark else None,
+        bypass_decoder=args.bypass_decoder,
+        boost_watermark_lr=args.boost_watermark_lr,
+        disable_vclub_adv=args.disable_vclub_adv,
     )
     trainer.train(
         train_loader=train_loader,

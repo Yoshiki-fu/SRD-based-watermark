@@ -281,6 +281,44 @@ class VCWatermarkModel(nn.Module):
             'z_c_hat':            z_c_hat,
         }
 
+    def forward_bypass(
+        self,
+        mel: torch.Tensor,
+        f0_norm: torch.Tensor,
+        W: torch.Tensor,
+    ) -> Dict[str, torch.Tensor]:
+        """Decoder / AttackLayer / WatermarkExtractor をスキップする診断用 forward。
+
+        ContentEncoder → WatermarkEncoder → FusionLayer までを実行し返す。
+        BypassExtractor への入力となる z_c_fused はこの dict に含まれる。
+
+        Args:
+            mel:     (B, dim_freq, T)  channel-first メルスペクトログラム
+            f0_norm: (B, T)            話者正規化済み F0 in [0, 1]
+            W:       (B, num_bits)     float {0, 1} バイナリ透かし
+        Returns:
+            dict with keys:
+                'z_c':       (B, T', dim_neck*2)   Content codes (透かし混入前)
+                'z_c_fused': (B, T', dim_neck*2)   透かし混入後 Content codes
+                'z_s':       (B, dim_spk_emb)      Speaker embedding
+                'z_r':       (B, T', dim_neck_2*2) Rhythm codes
+                'z_f':       (B, T', dim_neck_3*2) F0 codes
+        """
+        z_c = self.content_encoder(mel)
+        z_s = self.speaker_encoder(mel)
+        z_r = self.rhythm_encoder(mel)
+        f0_onehot, _ = F0Quantizer.quantize(f0_norm, num_bins=self.f0_num_bins)
+        z_f = self.f0_encoder(f0_onehot)
+        E_w = self.wm_encoder(W)
+        z_c_fused = self.fusion_layer(z_c, E_w)
+        return {
+            'z_c':       z_c,
+            'z_c_fused': z_c_fused,
+            'z_s':       z_s,
+            'z_r':       z_r,
+            'z_f':       z_f,
+        }
+
     def get_param_groups(
         self,
         g_lr: float = 1e-4,

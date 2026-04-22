@@ -213,6 +213,47 @@ class WatermarkExtractor(nn.Module):
 
 
 # ---------------------------------------------------------------------------
+# BypassExtractor
+# ---------------------------------------------------------------------------
+
+class BypassExtractor(nn.Module):
+    """診断用: z_c_fused から直接 W_hat を推定する軽量 Extractor。
+
+    Decoder / AttackLayer / ContentEncoder をすべてスキップし、
+    z_c_fused (B, T', D_c) に GAP + MLP を適用して W_hat を得る。
+    --bypass_decoder オプション専用モジュール。
+
+    Args:
+        dim_c:      z_c_fused の特徴次元 D_c (default 16 = dim_neck * 2)
+        num_bits:   出力ビット数 N (default 16)
+        mlp_hidden: MLP 中間層次元 (default 32)
+    """
+
+    def __init__(
+        self,
+        dim_c: int = 16,
+        num_bits: int = 16,
+        mlp_hidden: int = 32,
+    ) -> None:
+        super().__init__()
+        self.mlp = nn.Sequential(
+            nn.Linear(dim_c, mlp_hidden),
+            nn.ReLU(),
+            nn.Linear(mlp_hidden, num_bits),
+        )
+
+    def forward(self, z_c_fused: torch.Tensor) -> torch.Tensor:
+        """
+        Args:
+            z_c_fused: (B, T', dim_c)  融合済み Content codes
+        Returns:
+            W_hat: (B, num_bits)  透かしビット logits (sigmoid 前)
+        """
+        pooled = z_c_fused.mean(dim=1)   # GAP: (B, dim_c)
+        return self.mlp(pooled)           # (B, num_bits)
+
+
+# ---------------------------------------------------------------------------
 # 透かし生成ユーティリティ
 # ---------------------------------------------------------------------------
 

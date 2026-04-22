@@ -16,6 +16,7 @@ SRD-VC/
 
 # チェックポイント
 checkpoints/
+checkpoints_overfit/
 
 # Claude Code設定
 .claude/

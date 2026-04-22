@@ -25,6 +25,7 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 
 from src.models.full_model import VCWatermarkModel
+from src.models.watermark import BypassExtractor
 from src.losses.reconstruction import ReconstructionLoss
 from src.losses.watermark_loss import WatermarkLoss
 from src.losses.info_nce import InfoNCELoss
@@ -68,10 +69,15 @@ class VCWatermarkTrainer:
         resume_from: Optional[str] = None,
         device: Optional[str] = None,
         fixed_watermark_seed: Optional[int] = None,
+        bypass_decoder: bool = False,
+        boost_watermark_lr: Optional[float] = None,
+        disable_vclub_adv: bool = False,
     ) -> None:
         self.cfg = cfg
         self.device = _resolve_device(device)
         self._fixed_watermark_seed = fixed_watermark_seed
+        self.bypass_decoder = bypass_decoder
+        self.disable_vclub_adv = disable_vclub_adv
         self._setup_logger()
 
         resolved_ckpt = _resolve_ckpt_path(cfg, ckpt_path)
@@ -79,11 +85,21 @@ class VCWatermarkTrainer:
         # モデル構築
         self.model = self._build_model(resolved_ckpt)
 
+        # 診断用 BypassExtractor（--bypass_decoder 時のみ）
+        if bypass_decoder:
+            enc = cfg.get('encoder', {})
+            wm  = cfg.get('watermark', {})
+            self.bypass_extractor = BypassExtractor(
+                dim_c=enc.get('dim_neck', 8) * 2,
+                num_bits=wm.get('num_bits', 16),
+                mlp_hidden=wm.get('extractor_mlp_hidden', 32),
+            ).to(self.device)
+
         # Loss 構築
         self._build_losses(resolved_ckpt)
 
-        # 3 Optimizer 構築
-        self._build_optimizers()
+        # 3 Optimizer 構築（boost_watermark_lr を反映）
+        self._build_optimizers(boost_watermark_lr=boost_watermark_lr)
 
         # 学習再開カウンタ
         self.start_epoch: int = 1
@@ -212,21 +228,37 @@ class VCWatermarkTrainer:
         dcfg = self.cfg.get('distortion', {})
         self.distortion = DistortionLayer(dcfg).to(self.device)
 
-    def _build_optimizers(self) -> None:
+    def _build_optimizers(self, boost_watermark_lr: Optional[float] = None) -> None:
         tc = self.cfg.get('training', {})
         lc = self.cfg.get('losses', {})
 
         beta1 = tc.get('beta1', 0.9)
         beta2 = tc.get('beta2', 0.999)
 
-        self.optimizer_G = optim.Adam(
-            self.model.get_param_groups(
-                g_lr=tc.get('g_lr', 1e-4),
-                content_lr=tc.get('content_lr', 1e-5),
-                decoder_lr=tc.get('decoder_lr', 1e-5),
-            ),
-            betas=(beta1, beta2),
+        base_g_lr = tc.get('g_lr', 1e-4)
+        wm_lr = base_g_lr * boost_watermark_lr if boost_watermark_lr is not None else base_g_lr
+
+        param_groups = self.model.get_param_groups(
+            g_lr=wm_lr,
+            content_lr=tc.get('content_lr', 1e-5),
+            decoder_lr=tc.get('decoder_lr', 1e-5),
         )
+
+        # bypass_extractor のパラメータを WM モジュールグループ (index 1) に追加
+        if self.bypass_decoder:
+            bypass_params = list(self.bypass_extractor.parameters())
+            param_groups[1]['params'] = param_groups[1]['params'] + bypass_params
+            self.logger.info(
+                f"[bypass] bypass_extractor params added to optimizer_G group[1]: "
+                f"{sum(p.numel() for p in bypass_params)} params, lr={wm_lr}"
+            )
+
+        if boost_watermark_lr is not None:
+            self.logger.info(
+                f"[boost] WM module lr = {base_g_lr} × {boost_watermark_lr} = {wm_lr}"
+            )
+
+        self.optimizer_G = optim.Adam(param_groups, betas=(beta1, beta2))
 
         vclub_lr = lc.get('vclub', {}).get('lr', 3e-4)
         self.optimizer_D_vclub = optim.Adam(
@@ -338,22 +370,72 @@ class VCWatermarkTrainer:
         Returns:
             各 loss とメトリクスの dict（全て .detach() 済み、ログ用）
         """
+        zero = torch.tensor(0.0, device=self.device)
+
+        # ------------------------------------------------------------------
+        # bypass_decoder モード: Decoder/Attack/Extractor をすべてスキップ
+        # optimizer_G のみ更新（D_vclub / D_adv は呼ばない）
+        # ------------------------------------------------------------------
+        if self.bypass_decoder:
+            outputs = self.model.forward_bypass(mel, f0_norm, W)
+            W_hat = self.bypass_extractor(outputs['z_c_fused'])
+            loss_wm, ber_train = self.wm_loss(W_hat, W)
+            loss_nce = self.nce_loss(outputs['z_c_fused'], W)
+            loss_total = self.lambda_wm * loss_wm + self.lambda_nce * loss_nce
+            self.optimizer_G.zero_grad()
+            loss_total.backward()
+            self.optimizer_G.step()
+            return {
+                'loss_total': loss_total.detach(),
+                'loss_rec':   zero,
+                'loss_wm':    loss_wm.detach(),
+                'loss_nce':   loss_nce.detach(),
+                'loss_vclub': zero,
+                'loss_adv':   zero,
+                'ber_train':  ber_train,
+            }
+
+        # ------------------------------------------------------------------
+        # 通常 forward（Decoder + Attack + Extractor を使う）
+        # ------------------------------------------------------------------
         outputs = self.model(mel, f0_norm, W, attack_fn=self.distortion)
 
         # mel は channel-first (B,80,T); Decoder 出力は time-first (B,T,80)
-        # ReconstructionLoss は time-first で比較するため transpose が必要
-        mel_tf = mel.transpose(1, 2)  # (B, T, 80)
-
-        loss_rec = self.rec_loss(
-            mel_tf,
-            outputs['mel_postnet'],
-            outputs['mel_before_postnet'],
-        )
+        mel_tf = mel.transpose(1, 2)
+        loss_rec = self.rec_loss(mel_tf, outputs['mel_postnet'], outputs['mel_before_postnet'])
         loss_wm, ber_train = self.wm_loss(outputs['W_hat'], W)
-        loss_nce   = self.nce_loss(outputs['z_c_fused'], W)
+        loss_nce = self.nce_loss(outputs['z_c_fused'], W)
+
+        # ------------------------------------------------------------------
+        # disable_vclub_adv モード: Rec + WM + InfoNCE のみ
+        # optimizer_G のみ更新（D_adv は呼ばない）
+        # ------------------------------------------------------------------
+        if self.disable_vclub_adv:
+            loss_total = (
+                self.lambda_rec * loss_rec +
+                self.lambda_wm  * loss_wm  +
+                self.lambda_nce * loss_nce
+            )
+            self.optimizer_G.zero_grad()
+            loss_total.backward()
+            self.optimizer_G.step()
+            return {
+                'loss_total': loss_total.detach(),
+                'loss_rec':   loss_rec.detach(),
+                'loss_wm':    loss_wm.detach(),
+                'loss_nce':   loss_nce.detach(),
+                'loss_vclub': zero,
+                'loss_adv':   zero,
+                'ber_train':  ber_train,
+            }
+
+        # ------------------------------------------------------------------
+        # フル学習: vCLUB + Adversarial を含む全 Loss
+        # 1 回の backward: GRL 込みで全パラメータの .grad を書き込む
+        # zero_grad を backward の前に呼ぶことが二重カウント回避の必須条件
+        # ------------------------------------------------------------------
         loss_vclub = self.vclub.vclub_loss(outputs['z_c'], outputs['z_r'], outputs['z_f'])
         loss_adv   = self.adv_loss(outputs['z_c'], outputs['z_c_hat'], speaker_id)
-
         loss_total = (
             self.lambda_rec   * loss_rec   +
             self.lambda_wm    * loss_wm    +
@@ -361,9 +443,6 @@ class VCWatermarkTrainer:
             self.lambda_vclub * loss_vclub +
             self.lambda_adv   * loss_adv
         )
-
-        # 1 回の backward: GRL 込みで全パラメータの .grad を書き込む
-        # zero_grad を backward の前に呼ぶことが二重カウント回避の必須条件
         self.optimizer_G.zero_grad()
         self.optimizer_D_adv.zero_grad()
         loss_total.backward()
@@ -417,12 +496,15 @@ class VCWatermarkTrainer:
             speaker_id = speaker_id.to(self.device)
             W          = self._generate_watermark(mel.size(0))
 
-            # Phase A: vCLUB 推定器の先行更新（torch.no_grad() でメモリ節約）
-            # ContentEncoder / Decoder に Dropout がないため同一入力の forward は決定論的。
-            # outputs_a を estimator_iters 回使い回す（SRD-VC 各 iter forward と等価）。
-            with torch.no_grad():
-                outputs_a = self.model(mel, f0_norm, W, attack_fn=None)
-            loss_est_avg = self._phase_a_step(outputs_a)
+            # Phase A: vCLUB 推定器の先行更新
+            # bypass_decoder / disable_vclub_adv のいずれかが True の場合はスキップ。
+            # スキップ時は optimizer_D_vclub を一切呼ばない。
+            if not self.disable_vclub_adv and not self.bypass_decoder:
+                with torch.no_grad():
+                    outputs_a = self.model(mel, f0_norm, W, attack_fn=None)
+                loss_est_avg = self._phase_a_step(outputs_a)
+            else:
+                loss_est_avg = torch.tensor(0.0, device=self.device)
 
             # Phase B: メインネット + Adversarial Discriminator 同時更新
             losses = self._phase_b_step(mel, f0_norm, W, speaker_id)
@@ -468,13 +550,21 @@ class VCWatermarkTrainer:
                 f0_norm = f0_norm.to(self.device)
                 W       = self._generate_watermark(mel.size(0))
 
-                out_clean = self.model(mel, f0_norm, W, attack_fn=None)
-                _, ber_clean = self.wm_loss(out_clean['W_hat'], W)
-                bers_clean.append(ber_clean.item())
+                if self.bypass_decoder:
+                    # bypass モード: attack なし、BypassExtractor で BER を計測
+                    out = self.model.forward_bypass(mel, f0_norm, W)
+                    W_hat = self.bypass_extractor(out['z_c_fused'])
+                    _, ber = self.wm_loss(W_hat, W)
+                    bers_clean.append(ber.item())
+                    bers_att.append(ber.item())   # attack なしのため同値
+                else:
+                    out_clean = self.model(mel, f0_norm, W, attack_fn=None)
+                    _, ber_clean = self.wm_loss(out_clean['W_hat'], W)
+                    bers_clean.append(ber_clean.item())
 
-                out_att = self.model(mel, f0_norm, W, attack_fn=self.val_distortion)
-                _, ber_att = self.wm_loss(out_att['W_hat'], W)
-                bers_att.append(ber_att.item())
+                    out_att = self.model(mel, f0_norm, W, attack_fn=self.val_distortion)
+                    _, ber_att = self.wm_loss(out_att['W_hat'], W)
+                    bers_att.append(ber_att.item())
 
         n = len(bers_clean)
         return {
@@ -513,6 +603,8 @@ class VCWatermarkTrainer:
             'optimizer_D_adv':    self.optimizer_D_adv.state_dict(),
             'best_val_ber_clean': self.best_val_ber_clean,
         }
+        if self.bypass_decoder:
+            state['bypass_extractor'] = self.bypass_extractor.state_dict()
 
         latest = os.path.join(ckpt_dir, 'checkpoint_latest.pt')
         torch.save(state, latest)
@@ -538,6 +630,8 @@ class VCWatermarkTrainer:
         self.optimizer_G.load_state_dict(state['optimizer_G'])
         self.optimizer_D_vclub.load_state_dict(state['optimizer_D_vclub'])
         self.optimizer_D_adv.load_state_dict(state['optimizer_D_adv'])
+        if self.bypass_decoder and 'bypass_extractor' in state:
+            self.bypass_extractor.load_state_dict(state['bypass_extractor'])
         self.start_epoch = state['epoch'] + 1
         self.best_val_ber_clean = state.get('best_val_ber_clean', float('inf'))
         self.logger.info(f"Resumed from epoch {state['epoch']}: {path}")
