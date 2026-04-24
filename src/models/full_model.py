@@ -24,6 +24,7 @@ from src.models.encoders import (
     RhythmEncoder,
     F0Encoder,
     load_pretrained_encoders,
+    load_pretrained_extractor_content_encoder,
 )
 from src.models.watermark import WatermarkEncoder, FusionLayer, WatermarkExtractor
 from src.models.decoder import MelDecoder, load_pretrained_decoder
@@ -117,6 +118,8 @@ class VCWatermarkModel(nn.Module):
         fusion_conv_channels: int = 16,
         ckpt_path: Optional[str] = None,
         strict: bool = True,
+        load_pretrained_extractor: bool = False,
+        freeze_extractor_content_encoder: bool = False,
     ) -> None:
         super().__init__()
         if subsample is None:
@@ -207,6 +210,17 @@ class VCWatermarkModel(nn.Module):
                 strict=strict,
             )
             load_pretrained_decoder(ckpt_path, self.decoder, strict=strict)
+
+        if load_pretrained_extractor:
+            if ckpt_path is None:
+                raise ValueError("load_pretrained_extractor=True には ckpt_path が必要です")
+            load_pretrained_extractor_content_encoder(
+                ckpt_path, self.extractor.content_encoder, strict=strict
+            )
+
+        if freeze_extractor_content_encoder:
+            for p in self.extractor.content_encoder.parameters():
+                p.requires_grad_(False)
 
         for module in [self.speaker_encoder, self.rhythm_encoder, self.f0_encoder]:
             for param in module.parameters():

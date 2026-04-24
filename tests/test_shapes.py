@@ -587,6 +587,30 @@ class TestVCWatermarkModelWithCheckpoint:
         assert out['mel_postnet'].shape == (B, T, 80)
         assert out['W_hat'].shape == (B, 16)
 
+    def test_load_pretrained_extractor(self) -> None:
+        """load_pretrained_extractor=True でロード前後の重みが変わること"""
+        base = VCWatermarkModel()
+        base_w = next(base.extractor.content_encoder.parameters()).clone()
+
+        loaded = VCWatermarkModel(ckpt_path=CKPT_PATH, load_pretrained_extractor=True, strict=False)
+        loaded_w = next(loaded.extractor.content_encoder.parameters())
+
+        assert not torch.allclose(base_w, loaded_w), \
+            "事前学習 weights のロード後、Extractor ContentEncoder の重みが変化していない"
+
+    def test_freeze_extractor_content(self) -> None:
+        """freeze_extractor_content_encoder=True で凍結され、メイン CE は学習可能なまま"""
+        model = VCWatermarkModel(
+            ckpt_path=CKPT_PATH,
+            load_pretrained_extractor=True,
+            freeze_extractor_content_encoder=True,
+            strict=False,
+        )
+        for p in model.extractor.content_encoder.parameters():
+            assert not p.requires_grad, "Extractor ContentEncoder が凍結されていない"
+        for p in model.content_encoder.parameters():
+            assert p.requires_grad, "メイン ContentEncoder が誤って凍結されている"
+
 
 # ---------------------------------------------------------------------------
 # InfoNCELoss

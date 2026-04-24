@@ -134,6 +134,16 @@ def main() -> None:
         help='vCLUB と Adversarial Loss を無効化し '
              'Reconstruction + Watermark + InfoNCE のみで学習する',
     )
+    parser.add_argument(
+        '--load_pretrained_extractor',
+        action='store_true',
+        help='Extractor 前段 ContentEncoder に事前学習 weights をロード',
+    )
+    parser.add_argument(
+        '--freeze_extractor_content',
+        action='store_true',
+        help='Extractor 前段 ContentEncoder を凍結（--load_pretrained_extractor との併用を想定）',
+    )
     args = parser.parse_args()
 
     with open(args.config) as f:
@@ -182,6 +192,8 @@ def main() -> None:
         bypass_decoder=args.bypass_decoder,
         boost_watermark_lr=args.boost_watermark_lr,
         disable_vclub_adv=args.disable_vclub_adv,
+        load_pretrained_extractor=args.load_pretrained_extractor,
+        freeze_extractor_content_encoder=args.freeze_extractor_content,
     )
     trainer.train(
         train_loader=train_loader,

@@ -675,3 +675,48 @@ def load_pretrained_encoders(
             spk_sd[k[len(prefix):]] = v
 
     speaker_encoder.load_state_dict(spk_sd, strict=strict)
+
+
+def load_pretrained_extractor_content_encoder(
+    ckpt_path: str,
+    content_encoder: ContentEncoder,
+    strict: bool = True,
+) -> None:
+    """Extractor 前段の独立 ContentEncoder に SRD-VC 事前学習 weights をロードする。
+
+    ロードするキー prefix は load_pretrained_encoders の Content Encoder 部分と同一:
+        module.encoder_1.convolutions_1.{i}.0.conv.* → convolutions.{i}.conv.*
+        module.encoder_1.convolutions_1.{i}.1.*      → convolutions.{i}.norm.*
+        module.encoder_1.lstm_1.*                    → lstm.*
+
+    Args:
+        ckpt_path:       800000-G.ckpt へのパス
+        content_encoder: WatermarkExtractor.content_encoder インスタンス
+        strict:          load_state_dict の strict オプション
+    """
+    ckpt = torch.load(ckpt_path, map_location='cpu')
+    g1: Dict[str, torch.Tensor] = ckpt['G1']
+
+    content_sd: Dict[str, torch.Tensor] = {}
+    pat_conv1 = re.compile(
+        r'^module\.encoder_1\.convolutions_1\.(\d+)\.0\.conv\.(weight|bias)$'
+    )
+    pat_norm1 = re.compile(
+        r'^module\.encoder_1\.convolutions_1\.(\d+)\.1\.(weight|bias)$'
+    )
+    pat_lstm1 = re.compile(r'^module\.encoder_1\.(lstm_1\..+)$')
+
+    for k, v in g1.items():
+        m = pat_conv1.match(k)
+        if m:
+            content_sd[f'convolutions.{m.group(1)}.conv.{m.group(2)}'] = v
+            continue
+        m = pat_norm1.match(k)
+        if m:
+            content_sd[f'convolutions.{m.group(1)}.norm.{m.group(2)}'] = v
+            continue
+        m = pat_lstm1.match(k)
+        if m:
+            content_sd[m.group(1).replace('lstm_1.', 'lstm.')] = v
+
+    content_encoder.load_state_dict(content_sd, strict=strict)

@@ -72,12 +72,16 @@ class VCWatermarkTrainer:
         bypass_decoder: bool = False,
         boost_watermark_lr: Optional[float] = None,
         disable_vclub_adv: bool = False,
+        load_pretrained_extractor: bool = False,
+        freeze_extractor_content_encoder: bool = False,
     ) -> None:
         self.cfg = cfg
         self.device = _resolve_device(device)
         self._fixed_watermark_seed = fixed_watermark_seed
         self.bypass_decoder = bypass_decoder
         self.disable_vclub_adv = disable_vclub_adv
+        self.load_pretrained_extractor = load_pretrained_extractor
+        self.freeze_extractor_content_encoder = freeze_extractor_content_encoder
         self._setup_logger()
 
         resolved_ckpt = _resolve_ckpt_path(cfg, ckpt_path)
@@ -186,6 +190,8 @@ class VCWatermarkTrainer:
             fusion_conv_channels=wm.get('fusion_conv_channels', 16),
             ckpt_path=ckpt_path,
             strict=False,  # 部分ロードを許容（Watermark 系は随時追加）
+            load_pretrained_extractor=self.load_pretrained_extractor,
+            freeze_extractor_content_encoder=self.freeze_extractor_content_encoder,
         ).to(self.device)
         return model
 

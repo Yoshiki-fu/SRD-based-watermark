@@ -108,9 +108,6 @@ def forward(self, x: torch.Tensor) -> torch.Tensor:
 - 出力形式は .npy または .pt で /workspace/ 配下に保存
 - VCTK全44,455ファイル（110話者）が対象
 
-
-
-
 ### 攻撃カリキュラム（微分可能な攻撃レイヤー）
 - Epoch 1-5: 攻撃なし（クリーンな再構築と抽出）
 - Epoch 6-15: 軽微なガウシアンノイズ、Dropout
