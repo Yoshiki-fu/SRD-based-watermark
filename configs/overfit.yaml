@@ -55,7 +55,7 @@ losses:
     aux_weight: 1.0
     weight: 1.0
   watermark:
-    weight: 1.0
+    weight: 10.0
   info_nce:
     temperature: 0.1
     symmetric: true
@@ -64,12 +64,12 @@ losses:
     hidden_size: 512
     lr: 3.0e-4
     estimator_iters: 5
-    weight: 0.01
+    weight: 0.0 # 0.01
     load_pretrained: true
     include_rp: false
   adversarial:
     alpha: 1.0
-    weight: 0.1
+    weight: 0.0 # 0.1
     num_classes: 100
     hidden_dim: 256
     lr: 1.0e-4
@@ -91,7 +91,7 @@ data:
 
 training:
   batch_size: 4
-  g_lr: 1.0e-3
+  g_lr: 1.0e-4
   content_lr: 1.0e-4
   decoder_lr: 1.0e-4
   beta1: 0.9

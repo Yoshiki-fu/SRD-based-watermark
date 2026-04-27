@@ -6,404 +6,309 @@
   ckpt = torch.load(ckpt_path, map_location='cpu')
 /home/vc-watermark/src/losses/vclub.py:274: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
   ckpt = torch.load(ckpt_path, map_location='cpu')
-[2026-04-24 15:22:26][INFO] Trainer initialized on cuda. start_epoch=1
-[2026-04-24 15:22:27][INFO]   iter 0001/0001 | loss_total=3.8743 ber_train=0.5312 loss_est=-79.5529
-[2026-04-24 15:22:27][INFO] Epoch 001/200 | loss_total=3.8743 | loss_rec=0.2125 | loss_wm=0.7000 | loss_nce=2.1032 | loss_vclub=0.0065 | loss_adv=8.5857 | ber_train=0.5312 | 0.3s
-[2026-04-24 15:22:27][INFO]   iter 0001/0001 | loss_total=3.4260 ber_train=0.5312 loss_est=-79.5800
-[2026-04-24 15:22:27][INFO] Epoch 002/200 | loss_total=3.4260 | loss_rec=0.1764 | loss_wm=0.6984 | loss_nce=1.6974 | loss_vclub=0.0093 | loss_adv=8.5369 | ber_train=0.5312 | 0.1s
-[2026-04-24 15:22:27][INFO]   iter 0001/0001 | loss_total=3.1612 ber_train=0.5312 loss_est=-79.4019
-[2026-04-24 15:22:27][INFO] Epoch 003/200 | loss_total=3.1612 | loss_rec=0.1516 | loss_wm=0.6971 | loss_nce=1.4635 | loss_vclub=0.0118 | loss_adv=8.4895 | ber_train=0.5312 | 0.1s
-[2026-04-24 15:22:27][INFO]   iter 0001/0001 | loss_total=2.8835 ber_train=0.5312 loss_est=-79.5688
-[2026-04-24 15:22:27][INFO] Epoch 004/200 | loss_total=2.8835 | loss_rec=0.1154 | loss_wm=0.6957 | loss_nce=1.2265 | loss_vclub=0.0052 | loss_adv=8.4580 | ber_train=0.5312 | 0.1s
-[2026-04-24 15:22:28][INFO]   iter 0001/0001 | loss_total=2.8214 ber_train=0.5312 loss_est=-79.5672
-[2026-04-24 15:22:28][INFO] Epoch 005/200 | loss_total=2.8214 | loss_rec=0.1090 | loss_wm=0.6943 | loss_nce=1.1762 | loss_vclub=0.0102 | loss_adv=8.4177 | ber_train=0.5312 | 0.1s
-[2026-04-24 15:22:28][INFO]   iter 0001/0001 | loss_total=2.7479 ber_train=0.4688 loss_est=-79.5539
-[2026-04-24 15:22:28][INFO] Epoch 006/200 | loss_total=2.7479 | loss_rec=0.1131 | loss_wm=0.6925 | loss_nce=1.1040 | loss_vclub=0.0078 | loss_adv=8.3831 | ber_train=0.4688 | 0.1s
-[2026-04-24 15:22:28][INFO]   iter 0001/0001 | loss_total=2.6952 ber_train=0.4688 loss_est=-79.1626
-[2026-04-24 15:22:28][INFO] Epoch 007/200 | loss_total=2.6952 | loss_rec=0.1125 | loss_wm=0.6910 | loss_nce=1.0572 | loss_vclub=-0.0017 | loss_adv=8.3458 | ber_train=0.4688 | 0.1s
-[2026-04-24 15:22:29][INFO]   iter 0001/0001 | loss_total=2.6305 ber_train=0.4688 loss_est=-79.0677
-[2026-04-24 15:22:29][INFO] Epoch 008/200 | loss_total=2.6305 | loss_rec=0.0981 | loss_wm=0.6894 | loss_nce=1.0131 | loss_vclub=0.0046 | loss_adv=8.2983 | ber_train=0.4688 | 0.1s
-[2026-04-24 15:22:29][INFO]   iter 0001/0001 | loss_total=2.5985 ber_train=0.4688 loss_est=-79.3146
-[2026-04-24 15:22:29][INFO] Epoch 009/200 | loss_total=2.5985 | loss_rec=0.0806 | loss_wm=0.6880 | loss_nce=1.0035 | loss_vclub=0.0156 | loss_adv=8.2620 | ber_train=0.4688 | 0.1s
-[2026-04-24 15:22:29][INFO]   iter 0001/0001 | loss_total=2.4665 ber_train=0.4219 loss_est=-79.2953
-[2026-04-24 15:22:29][INFO] Epoch 010/200 | loss_total=2.4665 | loss_rec=0.0881 | loss_wm=0.6863 | loss_nce=0.8713 | loss_vclub=0.0089 | loss_adv=8.2074 | ber_train=0.4219 | val_ber_clean=0.4375 | val_ber_attacked=0.4375 | 0.1s
-[2026-04-24 15:22:30][INFO]   iter 0001/0001 | loss_total=2.3811 ber_train=0.4375 loss_est=-79.5563
-[2026-04-24 15:22:30][INFO] Epoch 011/200 | loss_total=2.3811 | loss_rec=0.0748 | loss_wm=0.6849 | loss_nce=0.8034 | loss_vclub=0.0146 | loss_adv=8.1789 | ber_train=0.4375 | 0.1s
-[2026-04-24 15:22:30][INFO]   iter 0001/0001 | loss_total=2.3115 ber_train=0.4375 loss_est=-79.1941
-[2026-04-24 15:22:30][INFO] Epoch 012/200 | loss_total=2.3115 | loss_rec=0.0850 | loss_wm=0.6833 | loss_nce=0.7307 | loss_vclub=-0.0046 | loss_adv=8.1262 | ber_train=0.4375 | 0.1s
-[2026-04-24 15:22:31][INFO]   iter 0001/0001 | loss_total=2.2442 ber_train=0.4375 loss_est=-79.4157
-[2026-04-24 15:22:31][INFO] Epoch 013/200 | loss_total=2.2442 | loss_rec=0.0831 | loss_wm=0.6818 | loss_nce=0.6704 | loss_vclub=0.0081 | loss_adv=8.0873 | ber_train=0.4375 | 0.1s
-[2026-04-24 15:22:31][INFO]   iter 0001/0001 | loss_total=2.1336 ber_train=0.4219 loss_est=-79.5353
-[2026-04-24 15:22:31][INFO] Epoch 014/200 | loss_total=2.1336 | loss_rec=0.0851 | loss_wm=0.6801 | loss_nce=0.5650 | loss_vclub=0.0178 | loss_adv=8.0322 | ber_train=0.4219 | 0.1s
-[2026-04-24 15:22:31][INFO]   iter 0001/0001 | loss_total=2.1374 ber_train=0.4062 loss_est=-79.1728
-[2026-04-24 15:22:31][INFO] Epoch 015/200 | loss_total=2.1374 | loss_rec=0.0732 | loss_wm=0.6783 | loss_nce=0.5865 | loss_vclub=0.0221 | loss_adv=7.9913 | ber_train=0.4062 | 0.1s
-[2026-04-24 15:22:32][INFO]   iter 0001/0001 | loss_total=2.0205 ber_train=0.4219 loss_est=-79.3373
-[2026-04-24 15:22:32][INFO] Epoch 016/200 | loss_total=2.0205 | loss_rec=0.0795 | loss_wm=0.6768 | loss_nce=0.4698 | loss_vclub=0.0058 | loss_adv=7.9437 | ber_train=0.4219 | 0.1s
-[2026-04-24 15:22:32][INFO]   iter 0001/0001 | loss_total=1.9382 ber_train=0.4062 loss_est=-79.5396
-[2026-04-24 15:22:32][INFO] Epoch 017/200 | loss_total=1.9382 | loss_rec=0.0743 | loss_wm=0.6756 | loss_nce=0.3979 | loss_vclub=0.0079 | loss_adv=7.9031 | ber_train=0.4062 | 0.1s
-[2026-04-24 15:22:32][INFO]   iter 0001/0001 | loss_total=1.9205 ber_train=0.4219 loss_est=-79.5613
-[2026-04-24 15:22:32][INFO] Epoch 018/200 | loss_total=1.9205 | loss_rec=0.0890 | loss_wm=0.6735 | loss_nce=0.3739 | loss_vclub=0.0238 | loss_adv=7.8377 | ber_train=0.4219 | 0.1s
-[2026-04-24 15:22:33][INFO]   iter 0001/0001 | loss_total=1.8063 ber_train=0.3906 loss_est=-79.4308
-[2026-04-24 15:22:33][INFO] Epoch 019/200 | loss_total=1.8063 | loss_rec=0.0708 | loss_wm=0.6728 | loss_nce=0.2807 | loss_vclub=0.0342 | loss_adv=7.8162 | ber_train=0.3906 | 0.1s
-[2026-04-24 15:22:33][INFO]   iter 0001/0001 | loss_total=1.7323 ber_train=0.3906 loss_est=-79.2182
-[2026-04-24 15:22:33][INFO] Epoch 020/200 | loss_total=1.7323 | loss_rec=0.0622 | loss_wm=0.6706 | loss_nce=0.2230 | loss_vclub=0.0014 | loss_adv=7.7651 | ber_train=0.3906 | val_ber_clean=0.4219 | val_ber_attacked=0.3906 | 0.1s
-[2026-04-24 15:22:34][INFO]   iter 0001/0001 | loss_total=1.6991 ber_train=0.4062 loss_est=-79.4297
-[2026-04-24 15:22:34][INFO] Epoch 021/200 | loss_total=1.6991 | loss_rec=0.0640 | loss_wm=0.6693 | loss_nce=0.1945 | loss_vclub=0.0197 | loss_adv=7.7114 | ber_train=0.4062 | 0.1s
-[2026-04-24 15:22:34][INFO]   iter 0001/0001 | loss_total=1.6802 ber_train=0.3594 loss_est=-79.3632
-[2026-04-24 15:22:34][INFO] Epoch 022/200 | loss_total=1.6802 | loss_rec=0.0701 | loss_wm=0.6676 | loss_nce=0.1738 | loss_vclub=0.0276 | loss_adv=7.6850 | ber_train=0.3594 | 0.1s
-[2026-04-24 15:22:34][INFO]   iter 0001/0001 | loss_total=1.6070 ber_train=0.3438 loss_est=-79.4555
-[2026-04-24 15:22:34][INFO] Epoch 023/200 | loss_total=1.6070 | loss_rec=0.0694 | loss_wm=0.6653 | loss_nce=0.1106 | loss_vclub=0.0108 | loss_adv=7.6164 | ber_train=0.3438 | 0.1s
-[2026-04-24 15:22:34][INFO]   iter 0001/0001 | loss_total=1.5968 ber_train=0.3906 loss_est=-79.3038
-[2026-04-24 15:22:34][INFO] Epoch 024/200 | loss_total=1.5968 | loss_rec=0.0838 | loss_wm=0.6642 | loss_nce=0.0890 | loss_vclub=0.0204 | loss_adv=7.5952 | ber_train=0.3906 | 0.1s
-[2026-04-24 15:22:35][INFO]   iter 0001/0001 | loss_total=1.5931 ber_train=0.3906 loss_est=-79.4471
-[2026-04-24 15:22:35][INFO] Epoch 025/200 | loss_total=1.5931 | loss_rec=0.0791 | loss_wm=0.6625 | loss_nce=0.0952 | loss_vclub=0.0149 | loss_adv=7.5615 | ber_train=0.3906 | 0.1s
-[2026-04-24 15:22:35][INFO]   iter 0001/0001 | loss_total=1.5520 ber_train=0.3594 loss_est=-79.2227
-[2026-04-24 15:22:35][INFO] Epoch 026/200 | loss_total=1.5520 | loss_rec=0.0738 | loss_wm=0.6606 | loss_nce=0.0693 | loss_vclub=0.0095 | loss_adv=7.4811 | ber_train=0.3594 | 0.1s
-[2026-04-24 15:22:35][INFO]   iter 0001/0001 | loss_total=1.5321 ber_train=0.3906 loss_est=-79.4556
-[2026-04-24 15:22:35][INFO] Epoch 027/200 | loss_total=1.5321 | loss_rec=0.0649 | loss_wm=0.6592 | loss_nce=0.0626 | loss_vclub=0.0197 | loss_adv=7.4509 | ber_train=0.3906 | 0.1s
-[2026-04-24 15:22:36][INFO]   iter 0001/0001 | loss_total=1.5239 ber_train=0.3906 loss_est=-79.2756
-[2026-04-24 15:22:36][INFO] Epoch 028/200 | loss_total=1.5239 | loss_rec=0.0813 | loss_wm=0.6566 | loss_nce=0.0470 | loss_vclub=-0.0085 | loss_adv=7.3900 | ber_train=0.3906 | 0.1s
-[2026-04-24 15:22:36][INFO]   iter 0001/0001 | loss_total=1.4976 ber_train=0.3750 loss_est=-79.2314
-[2026-04-24 15:22:36][INFO] Epoch 029/200 | loss_total=1.4976 | loss_rec=0.0721 | loss_wm=0.6551 | loss_nce=0.0360 | loss_vclub=0.0042 | loss_adv=7.3431 | ber_train=0.3750 | 0.1s
-[2026-04-24 15:22:36][INFO]   iter 0001/0001 | loss_total=1.4760 ber_train=0.4062 loss_est=-79.5163
-[2026-04-24 15:22:36][INFO] Epoch 030/200 | loss_total=1.4760 | loss_rec=0.0612 | loss_wm=0.6542 | loss_nce=0.0288 | loss_vclub=0.0173 | loss_adv=7.3156 | ber_train=0.4062 | val_ber_clean=0.3438 | val_ber_attacked=0.3438 | 0.1s
-[2026-04-24 15:22:37][INFO]   iter 0001/0001 | loss_total=1.4860 ber_train=0.3281 loss_est=-79.6304
-[2026-04-24 15:22:37][INFO] Epoch 031/200 | loss_total=1.4860 | loss_rec=0.0799 | loss_wm=0.6512 | loss_nce=0.0282 | loss_vclub=0.0218 | loss_adv=7.2648 | ber_train=0.3281 | 0.1s
-[2026-04-24 15:22:37][INFO]   iter 0001/0001 | loss_total=1.4715 ber_train=0.3438 loss_est=-79.3529
-[2026-04-24 15:22:37][INFO] Epoch 032/200 | loss_total=1.4715 | loss_rec=0.0783 | loss_wm=0.6490 | loss_nce=0.0228 | loss_vclub=0.0165 | loss_adv=7.2126 | ber_train=0.3438 | 0.1s
-[2026-04-24 15:22:38][INFO]   iter 0001/0001 | loss_total=1.4526 ber_train=0.3594 loss_est=-79.4561
-[2026-04-24 15:22:38][INFO] Epoch 033/200 | loss_total=1.4526 | loss_rec=0.0688 | loss_wm=0.6478 | loss_nce=0.0179 | loss_vclub=0.0004 | loss_adv=7.1805 | ber_train=0.3594 | 0.1s
-[2026-04-24 15:22:38][INFO]   iter 0001/0001 | loss_total=1.4430 ber_train=0.3125 loss_est=-79.3363
-[2026-04-24 15:22:38][INFO] Epoch 034/200 | loss_total=1.4430 | loss_rec=0.0672 | loss_wm=0.6451 | loss_nce=0.0167 | loss_vclub=0.0377 | loss_adv=7.1363 | ber_train=0.3125 | 0.1s
-[2026-04-24 15:22:38][INFO]   iter 0001/0001 | loss_total=1.4321 ber_train=0.3281 loss_est=-79.6153
-[2026-04-24 15:22:38][INFO] Epoch 035/200 | loss_total=1.4321 | loss_rec=0.0640 | loss_wm=0.6432 | loss_nce=0.0158 | loss_vclub=0.0053 | loss_adv=7.0898 | ber_train=0.3281 | 0.1s
-[2026-04-24 15:22:39][INFO]   iter 0001/0001 | loss_total=1.4235 ber_train=0.3594 loss_est=-79.6621
-[2026-04-24 15:22:39][INFO] Epoch 036/200 | loss_total=1.4235 | loss_rec=0.0620 | loss_wm=0.6420 | loss_nce=0.0131 | loss_vclub=0.0230 | loss_adv=7.0616 | ber_train=0.3594 | 0.1s
-[2026-04-24 15:22:39][INFO]   iter 0001/0001 | loss_total=1.4236 ber_train=0.3438 loss_est=-79.3694
-[2026-04-24 15:22:39][INFO] Epoch 037/200 | loss_total=1.4236 | loss_rec=0.0700 | loss_wm=0.6396 | loss_nce=0.0125 | loss_vclub=0.0193 | loss_adv=7.0121 | ber_train=0.3438 | 0.1s
-[2026-04-24 15:22:39][INFO]   iter 0001/0001 | loss_total=1.4100 ber_train=0.3281 loss_est=-79.5365
-[2026-04-24 15:22:39][INFO] Epoch 038/200 | loss_total=1.4100 | loss_rec=0.0667 | loss_wm=0.6377 | loss_nce=0.0093 | loss_vclub=0.0132 | loss_adv=6.9628 | ber_train=0.3281 | 0.1s
-[2026-04-24 15:22:40][INFO]   iter 0001/0001 | loss_total=1.4114 ber_train=0.3281 loss_est=-79.5198
-[2026-04-24 15:22:40][INFO] Epoch 039/200 | loss_total=1.4114 | loss_rec=0.0720 | loss_wm=0.6361 | loss_nce=0.0085 | loss_vclub=0.0447 | loss_adv=6.9431 | ber_train=0.3281 | 0.1s
-[2026-04-24 15:22:40][INFO]   iter 0001/0001 | loss_total=1.3916 ber_train=0.3594 loss_est=-79.7263
-[2026-04-24 15:22:40][INFO] Epoch 040/200 | loss_total=1.3916 | loss_rec=0.0601 | loss_wm=0.6340 | loss_nce=0.0074 | loss_vclub=0.0357 | loss_adv=6.8987 | ber_train=0.3594 | val_ber_clean=0.3438 | val_ber_attacked=0.3281 | 0.1s
-[2026-04-24 15:22:40][INFO]   iter 0001/0001 | loss_total=1.3890 ber_train=0.3281 loss_est=-79.5252
-[2026-04-24 15:22:40][INFO] Epoch 041/200 | loss_total=1.3890 | loss_rec=0.0691 | loss_wm=0.6309 | loss_nce=0.0067 | loss_vclub=0.0441 | loss_adv=6.8186 | ber_train=0.3281 | 0.1s
-[2026-04-24 15:22:41][INFO]   iter 0001/0001 | loss_total=1.3842 ber_train=0.3594 loss_est=-79.6935
-[2026-04-24 15:22:41][INFO] Epoch 042/200 | loss_total=1.3842 | loss_rec=0.0682 | loss_wm=0.6303 | loss_nce=0.0058 | loss_vclub=0.0594 | loss_adv=6.7931 | ber_train=0.3594 | 0.1s
-[2026-04-24 15:22:41][INFO]   iter 0001/0001 | loss_total=1.3687 ber_train=0.3125 loss_est=-79.5252
-[2026-04-24 15:22:41][INFO] Epoch 043/200 | loss_total=1.3687 | loss_rec=0.0596 | loss_wm=0.6275 | loss_nce=0.0056 | loss_vclub=0.0163 | loss_adv=6.7579 | ber_train=0.3125 | 0.1s
-[2026-04-24 15:22:41][INFO]   iter 0001/0001 | loss_total=1.3671 ber_train=0.3438 loss_est=-79.6889
-[2026-04-24 15:22:41][INFO] Epoch 044/200 | loss_total=1.3671 | loss_rec=0.0711 | loss_wm=0.6238 | loss_nce=0.0050 | loss_vclub=0.0324 | loss_adv=6.6691 | ber_train=0.3438 | 0.1s
-[2026-04-24 15:22:41][INFO]   iter 0001/0001 | loss_total=1.3609 ber_train=0.3125 loss_est=-79.4800
-[2026-04-24 15:22:41][INFO] Epoch 045/200 | loss_total=1.3609 | loss_rec=0.0667 | loss_wm=0.6229 | loss_nce=0.0045 | loss_vclub=0.0184 | loss_adv=6.6665 | ber_train=0.3125 | 0.1s
-[2026-04-24 15:22:42][INFO]   iter 0001/0001 | loss_total=1.3537 ber_train=0.3438 loss_est=-79.7051
-[2026-04-24 15:22:42][INFO] Epoch 046/200 | loss_total=1.3537 | loss_rec=0.0698 | loss_wm=0.6202 | loss_nce=0.0041 | loss_vclub=0.0247 | loss_adv=6.5942 | ber_train=0.3438 | 0.1s
-[2026-04-24 15:22:42][INFO]   iter 0001/0001 | loss_total=1.3377 ber_train=0.2812 loss_est=-79.6429
-[2026-04-24 15:22:42][INFO] Epoch 047/200 | loss_total=1.3377 | loss_rec=0.0586 | loss_wm=0.6182 | loss_nce=0.0039 | loss_vclub=0.0289 | loss_adv=6.5671 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:22:42][INFO]   iter 0001/0001 | loss_total=1.3351 ber_train=0.3438 loss_est=-79.1261
-[2026-04-24 15:22:42][INFO] Epoch 048/200 | loss_total=1.3351 | loss_rec=0.0597 | loss_wm=0.6173 | loss_nce=0.0037 | loss_vclub=0.0349 | loss_adv=6.5399 | ber_train=0.3438 | 0.1s
-[2026-04-24 15:22:43][INFO]   iter 0001/0001 | loss_total=1.3223 ber_train=0.2812 loss_est=-79.6077
-[2026-04-24 15:22:43][INFO] Epoch 049/200 | loss_total=1.3223 | loss_rec=0.0539 | loss_wm=0.6141 | loss_nce=0.0037 | loss_vclub=0.0299 | loss_adv=6.5025 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:22:43][INFO]   iter 0001/0001 | loss_total=1.3166 ber_train=0.2500 loss_est=-79.5338
-[2026-04-24 15:22:43][INFO] Epoch 050/200 | loss_total=1.3166 | loss_rec=0.0594 | loss_wm=0.6107 | loss_nce=0.0037 | loss_vclub=0.0214 | loss_adv=6.4258 | ber_train=0.2500 | val_ber_clean=0.2812 | val_ber_attacked=0.2812 | 0.1s
-[2026-04-24 15:22:44][INFO]   iter 0001/0001 | loss_total=1.3079 ber_train=0.2812 loss_est=-79.5394
-[2026-04-24 15:22:44][INFO] Epoch 051/200 | loss_total=1.3079 | loss_rec=0.0610 | loss_wm=0.6078 | loss_nce=0.0036 | loss_vclub=0.0435 | loss_adv=6.3502 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:22:44][INFO]   iter 0001/0001 | loss_total=1.3121 ber_train=0.2812 loss_est=-79.4631
-[2026-04-24 15:22:44][INFO] Epoch 052/200 | loss_total=1.3121 | loss_rec=0.0674 | loss_wm=0.6065 | loss_nce=0.0032 | loss_vclub=0.0300 | loss_adv=6.3466 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:22:45][INFO]   iter 0001/0001 | loss_total=1.2990 ber_train=0.3125 loss_est=-79.6616
-[2026-04-24 15:22:45][INFO] Epoch 053/200 | loss_total=1.2990 | loss_rec=0.0621 | loss_wm=0.6042 | loss_nce=0.0032 | loss_vclub=0.0203 | loss_adv=6.2923 | ber_train=0.3125 | 0.1s
-[2026-04-24 15:22:45][INFO]   iter 0001/0001 | loss_total=1.2901 ber_train=0.2812 loss_est=-79.5782
-[2026-04-24 15:22:45][INFO] Epoch 054/200 | loss_total=1.2901 | loss_rec=0.0591 | loss_wm=0.6024 | loss_nce=0.0031 | loss_vclub=0.0472 | loss_adv=6.2497 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:22:45][INFO]   iter 0001/0001 | loss_total=1.2822 ber_train=0.2656 loss_est=-79.5088
-[2026-04-24 15:22:45][INFO] Epoch 055/200 | loss_total=1.2822 | loss_rec=0.0552 | loss_wm=0.6003 | loss_nce=0.0032 | loss_vclub=0.0318 | loss_adv=6.2319 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:22:46][INFO]   iter 0001/0001 | loss_total=1.2806 ber_train=0.2656 loss_est=-79.5871
-[2026-04-24 15:22:46][INFO] Epoch 056/200 | loss_total=1.2806 | loss_rec=0.0626 | loss_wm=0.5982 | loss_nce=0.0028 | loss_vclub=0.0339 | loss_adv=6.1666 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:22:46][INFO]   iter 0001/0001 | loss_total=1.2690 ber_train=0.3281 loss_est=-79.6085
-[2026-04-24 15:22:46][INFO] Epoch 057/200 | loss_total=1.2690 | loss_rec=0.0546 | loss_wm=0.5968 | loss_nce=0.0029 | loss_vclub=0.0414 | loss_adv=6.1425 | ber_train=0.3281 | 0.1s
-[2026-04-24 15:22:46][INFO]   iter 0001/0001 | loss_total=1.2570 ber_train=0.2656 loss_est=-79.2959
-[2026-04-24 15:22:46][INFO] Epoch 058/200 | loss_total=1.2570 | loss_rec=0.0507 | loss_wm=0.5940 | loss_nce=0.0028 | loss_vclub=0.0090 | loss_adv=6.0950 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:22:46][INFO]   iter 0001/0001 | loss_total=1.2506 ber_train=0.2812 loss_est=-79.3835
-[2026-04-24 15:22:46][INFO] Epoch 059/200 | loss_total=1.2506 | loss_rec=0.0467 | loss_wm=0.5930 | loss_nce=0.0028 | loss_vclub=0.0233 | loss_adv=6.0787 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:22:47][INFO]   iter 0001/0001 | loss_total=1.2524 ber_train=0.2812 loss_est=-79.7137
-[2026-04-24 15:22:47][INFO] Epoch 060/200 | loss_total=1.2524 | loss_rec=0.0604 | loss_wm=0.5885 | loss_nce=0.0027 | loss_vclub=0.0305 | loss_adv=6.0050 | ber_train=0.2812 | val_ber_clean=0.2969 | val_ber_attacked=0.2656 | 0.1s
-[2026-04-24 15:22:47][INFO]   iter 0001/0001 | loss_total=1.2483 ber_train=0.2969 loss_est=-79.4788
-[2026-04-24 15:22:47][INFO] Epoch 061/200 | loss_total=1.2483 | loss_rec=0.0620 | loss_wm=0.5869 | loss_nce=0.0026 | loss_vclub=0.0342 | loss_adv=5.9645 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:22:47][INFO]   iter 0001/0001 | loss_total=1.2331 ber_train=0.2969 loss_est=-79.7672
-[2026-04-24 15:22:47][INFO] Epoch 062/200 | loss_total=1.2331 | loss_rec=0.0502 | loss_wm=0.5857 | loss_nce=0.0026 | loss_vclub=0.0320 | loss_adv=5.9437 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:22:48][INFO]   iter 0001/0001 | loss_total=1.2302 ber_train=0.2188 loss_est=-79.3260
-[2026-04-24 15:22:48][INFO] Epoch 063/200 | loss_total=1.2302 | loss_rec=0.0588 | loss_wm=0.5813 | loss_nce=0.0025 | loss_vclub=0.0133 | loss_adv=5.8755 | ber_train=0.2188 | 0.1s
-[2026-04-24 15:22:48][INFO]   iter 0001/0001 | loss_total=1.2307 ber_train=0.3125 loss_est=-79.5160
-[2026-04-24 15:22:48][INFO] Epoch 064/200 | loss_total=1.2307 | loss_rec=0.0640 | loss_wm=0.5801 | loss_nce=0.0024 | loss_vclub=0.0290 | loss_adv=5.8389 | ber_train=0.3125 | 0.1s
-[2026-04-24 15:22:48][INFO]   iter 0001/0001 | loss_total=1.2224 ber_train=0.2500 loss_est=-79.5788
-[2026-04-24 15:22:48][INFO] Epoch 065/200 | loss_total=1.2224 | loss_rec=0.0654 | loss_wm=0.5769 | loss_nce=0.0025 | loss_vclub=0.0170 | loss_adv=5.7745 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:22:49][INFO]   iter 0001/0001 | loss_total=1.2123 ber_train=0.2969 loss_est=-79.5190
-[2026-04-24 15:22:49][INFO] Epoch 066/200 | loss_total=1.2123 | loss_rec=0.0560 | loss_wm=0.5769 | loss_nce=0.0024 | loss_vclub=0.0359 | loss_adv=5.7663 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:22:49][INFO]   iter 0001/0001 | loss_total=1.2072 ber_train=0.2344 loss_est=-79.7382
-[2026-04-24 15:22:49][INFO] Epoch 067/200 | loss_total=1.2072 | loss_rec=0.0583 | loss_wm=0.5734 | loss_nce=0.0024 | loss_vclub=0.0325 | loss_adv=5.7270 | ber_train=0.2344 | 0.1s
-[2026-04-24 15:22:49][INFO]   iter 0001/0001 | loss_total=1.1940 ber_train=0.2969 loss_est=-79.4076
-[2026-04-24 15:22:49][INFO] Epoch 068/200 | loss_total=1.1940 | loss_rec=0.0511 | loss_wm=0.5715 | loss_nce=0.0024 | loss_vclub=0.0414 | loss_adv=5.6862 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:22:50][INFO]   iter 0001/0001 | loss_total=1.1852 ber_train=0.3125 loss_est=-79.2829
-[2026-04-24 15:22:50][INFO] Epoch 069/200 | loss_total=1.1852 | loss_rec=0.0444 | loss_wm=0.5714 | loss_nce=0.0023 | loss_vclub=0.0574 | loss_adv=5.6654 | ber_train=0.3125 | 0.1s
-[2026-04-24 15:22:50][INFO]   iter 0001/0001 | loss_total=1.1841 ber_train=0.2812 loss_est=-79.5019
-[2026-04-24 15:22:50][INFO] Epoch 070/200 | loss_total=1.1841 | loss_rec=0.0547 | loss_wm=0.5677 | loss_nce=0.0022 | loss_vclub=0.0355 | loss_adv=5.5914 | ber_train=0.2812 | val_ber_clean=0.2812 | val_ber_attacked=0.3125 | 0.1s
-[2026-04-24 15:22:50][INFO]   iter 0001/0001 | loss_total=1.1710 ber_train=0.2500 loss_est=-79.5988
-[2026-04-24 15:22:50][INFO] Epoch 071/200 | loss_total=1.1710 | loss_rec=0.0465 | loss_wm=0.5657 | loss_nce=0.0022 | loss_vclub=0.0720 | loss_adv=5.5583 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:22:51][INFO]   iter 0001/0001 | loss_total=1.1745 ber_train=0.2656 loss_est=-79.7113
-[2026-04-24 15:22:51][INFO] Epoch 072/200 | loss_total=1.1745 | loss_rec=0.0574 | loss_wm=0.5636 | loss_nce=0.0022 | loss_vclub=0.0045 | loss_adv=5.5121 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:22:51][INFO]   iter 0001/0001 | loss_total=1.1596 ber_train=0.2500 loss_est=-79.1985
-[2026-04-24 15:22:51][INFO] Epoch 073/200 | loss_total=1.1596 | loss_rec=0.0479 | loss_wm=0.5623 | loss_nce=0.0022 | loss_vclub=0.0438 | loss_adv=5.4681 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:22:51][INFO]   iter 0001/0001 | loss_total=1.1617 ber_train=0.2500 loss_est=-79.5169
-[2026-04-24 15:22:51][INFO] Epoch 074/200 | loss_total=1.1617 | loss_rec=0.0569 | loss_wm=0.5592 | loss_nce=0.0022 | loss_vclub=0.0338 | loss_adv=5.4309 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:22:52][INFO]   iter 0001/0001 | loss_total=1.1592 ber_train=0.2969 loss_est=-79.5285
-[2026-04-24 15:22:52][INFO] Epoch 075/200 | loss_total=1.1592 | loss_rec=0.0581 | loss_wm=0.5585 | loss_nce=0.0022 | loss_vclub=0.0537 | loss_adv=5.3982 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:22:52][INFO]   iter 0001/0001 | loss_total=1.1547 ber_train=0.2656 loss_est=-79.7078
-[2026-04-24 15:22:52][INFO] Epoch 076/200 | loss_total=1.1547 | loss_rec=0.0581 | loss_wm=0.5571 | loss_nce=0.0020 | loss_vclub=0.0800 | loss_adv=5.3679 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:22:52][INFO]   iter 0001/0001 | loss_total=1.1426 ber_train=0.2812 loss_est=-79.4346
-[2026-04-24 15:22:52][INFO] Epoch 077/200 | loss_total=1.1426 | loss_rec=0.0570 | loss_wm=0.5536 | loss_nce=0.0020 | loss_vclub=0.0119 | loss_adv=5.2977 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:22:53][INFO]   iter 0001/0001 | loss_total=1.1376 ber_train=0.2500 loss_est=-79.6239
-[2026-04-24 15:22:53][INFO] Epoch 078/200 | loss_total=1.1376 | loss_rec=0.0549 | loss_wm=0.5522 | loss_nce=0.0021 | loss_vclub=0.0710 | loss_adv=5.2765 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:22:53][INFO]   iter 0001/0001 | loss_total=1.1227 ber_train=0.2500 loss_est=-79.4194
-[2026-04-24 15:22:53][INFO] Epoch 079/200 | loss_total=1.1227 | loss_rec=0.0441 | loss_wm=0.5518 | loss_nce=0.0019 | loss_vclub=0.0356 | loss_adv=5.2455 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:22:53][INFO]   iter 0001/0001 | loss_total=1.1209 ber_train=0.2656 loss_est=-79.3227
-[2026-04-24 15:22:53][INFO] Epoch 080/200 | loss_total=1.1209 | loss_rec=0.0473 | loss_wm=0.5507 | loss_nce=0.0020 | loss_vclub=0.0126 | loss_adv=5.2084 | ber_train=0.2656 | val_ber_clean=0.2812 | val_ber_attacked=0.3125 | 0.1s
-[2026-04-24 15:22:54][INFO]   iter 0001/0001 | loss_total=1.1134 ber_train=0.2812 loss_est=-79.5422
-[2026-04-24 15:22:54][INFO] Epoch 081/200 | loss_total=1.1134 | loss_rec=0.0465 | loss_wm=0.5480 | loss_nce=0.0020 | loss_vclub=0.0295 | loss_adv=5.1655 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:22:54][INFO]   iter 0001/0001 | loss_total=1.1092 ber_train=0.2656 loss_est=-79.6714
-[2026-04-24 15:22:54][INFO] Epoch 082/200 | loss_total=1.1092 | loss_rec=0.0481 | loss_wm=0.5453 | loss_nce=0.0020 | loss_vclub=0.0423 | loss_adv=5.1331 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:22:54][INFO]   iter 0001/0001 | loss_total=1.1026 ber_train=0.2969 loss_est=-79.7149
-[2026-04-24 15:22:54][INFO] Epoch 083/200 | loss_total=1.1026 | loss_rec=0.0525 | loss_wm=0.5425 | loss_nce=0.0019 | loss_vclub=0.0358 | loss_adv=5.0543 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:22:54][INFO]   iter 0001/0001 | loss_total=1.0993 ber_train=0.2188 loss_est=-79.6028
-[2026-04-24 15:22:54][INFO] Epoch 084/200 | loss_total=1.0993 | loss_rec=0.0456 | loss_wm=0.5440 | loss_nce=0.0020 | loss_vclub=0.0359 | loss_adv=5.0739 | ber_train=0.2188 | 0.1s
-[2026-04-24 15:22:55][INFO]   iter 0001/0001 | loss_total=1.0946 ber_train=0.2656 loss_est=-79.3701
-[2026-04-24 15:22:55][INFO] Epoch 085/200 | loss_total=1.0946 | loss_rec=0.0501 | loss_wm=0.5410 | loss_nce=0.0019 | loss_vclub=0.0595 | loss_adv=5.0099 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:22:55][INFO]   iter 0001/0001 | loss_total=1.0807 ber_train=0.2812 loss_est=-79.2091
-[2026-04-24 15:22:55][INFO] Epoch 086/200 | loss_total=1.0807 | loss_rec=0.0430 | loss_wm=0.5400 | loss_nce=0.0018 | loss_vclub=0.0382 | loss_adv=4.9555 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:22:55][INFO]   iter 0001/0001 | loss_total=1.0826 ber_train=0.2969 loss_est=-79.4660
-[2026-04-24 15:22:55][INFO] Epoch 087/200 | loss_total=1.0826 | loss_rec=0.0492 | loss_wm=0.5381 | loss_nce=0.0018 | loss_vclub=0.0823 | loss_adv=4.9263 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:22:56][INFO]   iter 0001/0001 | loss_total=1.0817 ber_train=0.3125 loss_est=-79.5636
-[2026-04-24 15:22:56][INFO] Epoch 088/200 | loss_total=1.0817 | loss_rec=0.0538 | loss_wm=0.5374 | loss_nce=0.0019 | loss_vclub=0.1095 | loss_adv=4.8747 | ber_train=0.3125 | 0.1s
-[2026-04-24 15:22:56][INFO]   iter 0001/0001 | loss_total=1.0767 ber_train=0.2969 loss_est=-79.5755
-[2026-04-24 15:22:56][INFO] Epoch 089/200 | loss_total=1.0767 | loss_rec=0.0536 | loss_wm=0.5357 | loss_nce=0.0018 | loss_vclub=0.0530 | loss_adv=4.8508 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:22:56][INFO]   iter 0001/0001 | loss_total=1.0640 ber_train=0.2656 loss_est=-79.6527
-[2026-04-24 15:22:56][INFO] Epoch 090/200 | loss_total=1.0640 | loss_rec=0.0442 | loss_wm=0.5340 | loss_nce=0.0018 | loss_vclub=0.0380 | loss_adv=4.8351 | ber_train=0.2656 | val_ber_clean=0.2969 | val_ber_attacked=0.2500 | 0.1s
-[2026-04-24 15:22:57][INFO]   iter 0001/0001 | loss_total=1.0654 ber_train=0.2812 loss_est=-79.4976
-[2026-04-24 15:22:57][INFO] Epoch 091/200 | loss_total=1.0654 | loss_rec=0.0523 | loss_wm=0.5326 | loss_nce=0.0018 | loss_vclub=0.0601 | loss_adv=4.7804 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:22:57][INFO]   iter 0001/0001 | loss_total=1.0592 ber_train=0.3281 loss_est=-79.4134
-[2026-04-24 15:22:57][INFO] Epoch 092/200 | loss_total=1.0592 | loss_rec=0.0477 | loss_wm=0.5324 | loss_nce=0.0018 | loss_vclub=0.0726 | loss_adv=4.7656 | ber_train=0.3281 | 0.1s
-[2026-04-24 15:22:57][INFO]   iter 0001/0001 | loss_total=1.0534 ber_train=0.2344 loss_est=-79.7375
-[2026-04-24 15:22:57][INFO] Epoch 093/200 | loss_total=1.0534 | loss_rec=0.0453 | loss_wm=0.5313 | loss_nce=0.0019 | loss_vclub=0.0974 | loss_adv=4.7395 | ber_train=0.2344 | 0.1s
-[2026-04-24 15:22:58][INFO]   iter 0001/0001 | loss_total=1.0477 ber_train=0.2656 loss_est=-79.5770
-[2026-04-24 15:22:58][INFO] Epoch 094/200 | loss_total=1.0477 | loss_rec=0.0487 | loss_wm=0.5299 | loss_nce=0.0017 | loss_vclub=0.0934 | loss_adv=4.6654 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:22:58][INFO]   iter 0001/0001 | loss_total=1.0419 ber_train=0.2500 loss_est=-79.5346
-[2026-04-24 15:22:58][INFO] Epoch 095/200 | loss_total=1.0419 | loss_rec=0.0469 | loss_wm=0.5272 | loss_nce=0.0018 | loss_vclub=0.0731 | loss_adv=4.6537 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:22:58][INFO]   iter 0001/0001 | loss_total=1.0357 ber_train=0.2969 loss_est=-79.7388
-[2026-04-24 15:22:58][INFO] Epoch 096/200 | loss_total=1.0357 | loss_rec=0.0417 | loss_wm=0.5269 | loss_nce=0.0018 | loss_vclub=0.0541 | loss_adv=4.6491 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:22:59][INFO]   iter 0001/0001 | loss_total=1.0389 ber_train=0.2969 loss_est=-79.5596
-[2026-04-24 15:22:59][INFO] Epoch 097/200 | loss_total=1.0389 | loss_rec=0.0591 | loss_wm=0.5246 | loss_nce=0.0016 | loss_vclub=0.0609 | loss_adv=4.5300 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:22:59][INFO]   iter 0001/0001 | loss_total=1.0214 ber_train=0.2969 loss_est=-79.5215
-[2026-04-24 15:22:59][INFO] Epoch 098/200 | loss_total=1.0214 | loss_rec=0.0402 | loss_wm=0.5241 | loss_nce=0.0017 | loss_vclub=0.0337 | loss_adv=4.5498 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:22:59][INFO]   iter 0001/0001 | loss_total=1.0266 ber_train=0.2812 loss_est=-79.6588
-[2026-04-24 15:22:59][INFO] Epoch 099/200 | loss_total=1.0266 | loss_rec=0.0448 | loss_wm=0.5242 | loss_nce=0.0018 | loss_vclub=0.0926 | loss_adv=4.5493 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:00][INFO]   iter 0001/0001 | loss_total=1.0152 ber_train=0.2969 loss_est=-79.3022
-[2026-04-24 15:23:00][INFO] Epoch 100/200 | loss_total=1.0152 | loss_rec=0.0414 | loss_wm=0.5222 | loss_nce=0.0018 | loss_vclub=0.0822 | loss_adv=4.4887 | ber_train=0.2969 | val_ber_clean=0.2812 | val_ber_attacked=0.2812 | 0.1s
-[2026-04-24 15:23:00][INFO]   iter 0001/0001 | loss_total=1.0131 ber_train=0.2812 loss_est=-79.2114
-[2026-04-24 15:23:00][INFO] Epoch 101/200 | loss_total=1.0131 | loss_rec=0.0445 | loss_wm=0.5218 | loss_nce=0.0017 | loss_vclub=0.0622 | loss_adv=4.4450 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:00][INFO]   iter 0001/0001 | loss_total=1.0110 ber_train=0.2969 loss_est=-79.3598
-[2026-04-24 15:23:00][INFO] Epoch 102/200 | loss_total=1.0110 | loss_rec=0.0476 | loss_wm=0.5200 | loss_nce=0.0017 | loss_vclub=0.0605 | loss_adv=4.4117 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:01][INFO]   iter 0001/0001 | loss_total=1.0051 ber_train=0.2344 loss_est=-79.6496
-[2026-04-24 15:23:01][INFO] Epoch 103/200 | loss_total=1.0051 | loss_rec=0.0430 | loss_wm=0.5203 | loss_nce=0.0017 | loss_vclub=0.0855 | loss_adv=4.3923 | ber_train=0.2344 | 0.1s
-[2026-04-24 15:23:01][INFO]   iter 0001/0001 | loss_total=1.0051 ber_train=0.2969 loss_est=-79.6303
-[2026-04-24 15:23:01][INFO] Epoch 104/200 | loss_total=1.0051 | loss_rec=0.0541 | loss_wm=0.5179 | loss_nce=0.0016 | loss_vclub=0.0302 | loss_adv=4.3123 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:01][INFO]   iter 0001/0001 | loss_total=0.9981 ber_train=0.2812 loss_est=-79.7180
-[2026-04-24 15:23:01][INFO] Epoch 105/200 | loss_total=0.9981 | loss_rec=0.0493 | loss_wm=0.5173 | loss_nce=0.0016 | loss_vclub=0.0569 | loss_adv=4.2932 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:02][INFO]   iter 0001/0001 | loss_total=0.9886 ber_train=0.2812 loss_est=-79.2606
-[2026-04-24 15:23:02][INFO] Epoch 106/200 | loss_total=0.9886 | loss_rec=0.0352 | loss_wm=0.5187 | loss_nce=0.0018 | loss_vclub=0.0567 | loss_adv=4.3236 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:02][INFO]   iter 0001/0001 | loss_total=0.9825 ber_train=0.2656 loss_est=-79.5627
-[2026-04-24 15:23:02][INFO] Epoch 107/200 | loss_total=0.9825 | loss_rec=0.0407 | loss_wm=0.5154 | loss_nce=0.0018 | loss_vclub=0.1369 | loss_adv=4.2325 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:02][INFO]   iter 0001/0001 | loss_total=0.9795 ber_train=0.2656 loss_est=-79.4050
-[2026-04-24 15:23:02][INFO] Epoch 108/200 | loss_total=0.9795 | loss_rec=0.0425 | loss_wm=0.5154 | loss_nce=0.0016 | loss_vclub=0.0622 | loss_adv=4.1934 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:03][INFO]   iter 0001/0001 | loss_total=0.9743 ber_train=0.2812 loss_est=-79.5118
-[2026-04-24 15:23:03][INFO] Epoch 109/200 | loss_total=0.9743 | loss_rec=0.0473 | loss_wm=0.5133 | loss_nce=0.0016 | loss_vclub=0.0291 | loss_adv=4.1177 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:03][INFO]   iter 0001/0001 | loss_total=0.9687 ber_train=0.2812 loss_est=-79.6124
-[2026-04-24 15:23:03][INFO] Epoch 110/200 | loss_total=0.9687 | loss_rec=0.0421 | loss_wm=0.5133 | loss_nce=0.0015 | loss_vclub=0.0485 | loss_adv=4.1128 | ber_train=0.2812 | val_ber_clean=0.2812 | val_ber_attacked=0.2812 | 0.1s
-[2026-04-24 15:23:03][INFO]   iter 0001/0001 | loss_total=0.9684 ber_train=0.2969 loss_est=-79.7308
-[2026-04-24 15:23:03][INFO] Epoch 111/200 | loss_total=0.9684 | loss_rec=0.0472 | loss_wm=0.5128 | loss_nce=0.0015 | loss_vclub=0.0327 | loss_adv=4.0647 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:04][INFO]   iter 0001/0001 | loss_total=0.9635 ber_train=0.2500 loss_est=-79.4329
-[2026-04-24 15:23:04][INFO] Epoch 112/200 | loss_total=0.9635 | loss_rec=0.0429 | loss_wm=0.5112 | loss_nce=0.0016 | loss_vclub=0.1402 | loss_adv=4.0636 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:23:04][INFO]   iter 0001/0001 | loss_total=0.9592 ber_train=0.2656 loss_est=-79.6291
-[2026-04-24 15:23:04][INFO] Epoch 113/200 | loss_total=0.9592 | loss_rec=0.0439 | loss_wm=0.5105 | loss_nce=0.0016 | loss_vclub=0.0751 | loss_adv=4.0253 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:04][INFO]   iter 0001/0001 | loss_total=0.9568 ber_train=0.2656 loss_est=-79.5502
-[2026-04-24 15:23:04][INFO] Epoch 114/200 | loss_total=0.9568 | loss_rec=0.0448 | loss_wm=0.5106 | loss_nce=0.0015 | loss_vclub=0.1033 | loss_adv=3.9887 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:05][INFO]   iter 0001/0001 | loss_total=0.9548 ber_train=0.2812 loss_est=-79.5462
-[2026-04-24 15:23:05][INFO] Epoch 115/200 | loss_total=0.9548 | loss_rec=0.0448 | loss_wm=0.5106 | loss_nce=0.0016 | loss_vclub=0.1209 | loss_adv=3.9660 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:05][INFO]   iter 0001/0001 | loss_total=0.9452 ber_train=0.2969 loss_est=-79.4084
-[2026-04-24 15:23:05][INFO] Epoch 116/200 | loss_total=0.9452 | loss_rec=0.0453 | loss_wm=0.5078 | loss_nce=0.0015 | loss_vclub=0.0221 | loss_adv=3.9046 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:05][INFO]   iter 0001/0001 | loss_total=0.9427 ber_train=0.2969 loss_est=-79.5584
-[2026-04-24 15:23:05][INFO] Epoch 117/200 | loss_total=0.9427 | loss_rec=0.0446 | loss_wm=0.5081 | loss_nce=0.0015 | loss_vclub=0.1136 | loss_adv=3.8746 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:06][INFO]   iter 0001/0001 | loss_total=0.9391 ber_train=0.2812 loss_est=-79.7563
-[2026-04-24 15:23:06][INFO] Epoch 118/200 | loss_total=0.9391 | loss_rec=0.0420 | loss_wm=0.5076 | loss_nce=0.0015 | loss_vclub=0.0921 | loss_adv=3.8704 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:06][INFO]   iter 0001/0001 | loss_total=0.9354 ber_train=0.2656 loss_est=-79.5439
-[2026-04-24 15:23:06][INFO] Epoch 119/200 | loss_total=0.9354 | loss_rec=0.0460 | loss_wm=0.5056 | loss_nce=0.0015 | loss_vclub=0.0824 | loss_adv=3.8147 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:06][INFO]   iter 0001/0001 | loss_total=0.9266 ber_train=0.2969 loss_est=-79.4718
-[2026-04-24 15:23:06][INFO] Epoch 120/200 | loss_total=0.9266 | loss_rec=0.0375 | loss_wm=0.5065 | loss_nce=0.0015 | loss_vclub=0.0491 | loss_adv=3.8066 | ber_train=0.2969 | val_ber_clean=0.2812 | val_ber_attacked=0.2969 | 0.1s
-[2026-04-24 15:23:07][INFO]   iter 0001/0001 | loss_total=0.9198 ber_train=0.2656 loss_est=-79.4756
-[2026-04-24 15:23:07][INFO] Epoch 121/200 | loss_total=0.9198 | loss_rec=0.0344 | loss_wm=0.5059 | loss_nce=0.0016 | loss_vclub=0.0401 | loss_adv=3.7759 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:07][INFO]   iter 0001/0001 | loss_total=0.9299 ber_train=0.2812 loss_est=-79.5158
-[2026-04-24 15:23:07][INFO] Epoch 122/200 | loss_total=0.9299 | loss_rec=0.0481 | loss_wm=0.5054 | loss_nce=0.0016 | loss_vclub=0.0848 | loss_adv=3.7406 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:07][INFO]   iter 0001/0001 | loss_total=0.9208 ber_train=0.2812 loss_est=-79.7725
-[2026-04-24 15:23:07][INFO] Epoch 123/200 | loss_total=0.9208 | loss_rec=0.0383 | loss_wm=0.5056 | loss_nce=0.0016 | loss_vclub=0.1388 | loss_adv=3.7388 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:08][INFO]   iter 0001/0001 | loss_total=0.9116 ber_train=0.2812 loss_est=-79.3810
-[2026-04-24 15:23:08][INFO] Epoch 124/200 | loss_total=0.9116 | loss_rec=0.0368 | loss_wm=0.5028 | loss_nce=0.0015 | loss_vclub=0.0234 | loss_adv=3.7029 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:08][INFO]   iter 0001/0001 | loss_total=0.9112 ber_train=0.2500 loss_est=-79.3594
-[2026-04-24 15:23:08][INFO] Epoch 125/200 | loss_total=0.9112 | loss_rec=0.0401 | loss_wm=0.5033 | loss_nce=0.0015 | loss_vclub=0.0774 | loss_adv=3.6549 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:23:08][INFO]   iter 0001/0001 | loss_total=0.9038 ber_train=0.2812 loss_est=-79.3706
-[2026-04-24 15:23:08][INFO] Epoch 126/200 | loss_total=0.9038 | loss_rec=0.0362 | loss_wm=0.5016 | loss_nce=0.0015 | loss_vclub=0.0664 | loss_adv=3.6392 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:09][INFO]   iter 0001/0001 | loss_total=0.9024 ber_train=0.2500 loss_est=-79.4955
-[2026-04-24 15:23:09][INFO] Epoch 127/200 | loss_total=0.9024 | loss_rec=0.0395 | loss_wm=0.5019 | loss_nce=0.0015 | loss_vclub=0.0094 | loss_adv=3.5937 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:23:09][INFO]   iter 0001/0001 | loss_total=0.9031 ber_train=0.2656 loss_est=-79.7501
-[2026-04-24 15:23:09][INFO] Epoch 128/200 | loss_total=0.9031 | loss_rec=0.0390 | loss_wm=0.5015 | loss_nce=0.0015 | loss_vclub=0.1272 | loss_adv=3.5975 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:09][INFO]   iter 0001/0001 | loss_total=0.8966 ber_train=0.2812 loss_est=-79.3736
-[2026-04-24 15:23:09][INFO] Epoch 129/200 | loss_total=0.8966 | loss_rec=0.0383 | loss_wm=0.5007 | loss_nce=0.0014 | loss_vclub=0.0953 | loss_adv=3.5523 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:09][INFO]   iter 0001/0001 | loss_total=0.8960 ber_train=0.2656 loss_est=-79.6728
-[2026-04-24 15:23:10][INFO] Epoch 130/200 | loss_total=0.8960 | loss_rec=0.0399 | loss_wm=0.5004 | loss_nce=0.0014 | loss_vclub=0.1121 | loss_adv=3.5314 | ber_train=0.2656 | val_ber_clean=0.2656 | val_ber_attacked=0.2812 | 0.1s
-[2026-04-24 15:23:10][INFO]   iter 0001/0001 | loss_total=0.8878 ber_train=0.2812 loss_est=-79.5008
-[2026-04-24 15:23:10][INFO] Epoch 131/200 | loss_total=0.8878 | loss_rec=0.0369 | loss_wm=0.5000 | loss_nce=0.0014 | loss_vclub=0.0457 | loss_adv=3.4911 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:10][INFO]   iter 0001/0001 | loss_total=0.8825 ber_train=0.2812 loss_est=-79.3512
-[2026-04-24 15:23:10][INFO] Epoch 132/200 | loss_total=0.8825 | loss_rec=0.0355 | loss_wm=0.4993 | loss_nce=0.0014 | loss_vclub=0.0371 | loss_adv=3.4591 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:11][INFO]   iter 0001/0001 | loss_total=0.8866 ber_train=0.2656 loss_est=-79.5665
-[2026-04-24 15:23:11][INFO] Epoch 133/200 | loss_total=0.8866 | loss_rec=0.0372 | loss_wm=0.4993 | loss_nce=0.0014 | loss_vclub=0.0495 | loss_adv=3.4822 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:11][INFO]   iter 0001/0001 | loss_total=0.8816 ber_train=0.2969 loss_est=-79.7674
-[2026-04-24 15:23:11][INFO] Epoch 134/200 | loss_total=0.8816 | loss_rec=0.0391 | loss_wm=0.4985 | loss_nce=0.0014 | loss_vclub=0.0897 | loss_adv=3.4163 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:11][INFO]   iter 0001/0001 | loss_total=0.8795 ber_train=0.3281 loss_est=-79.5531
-[2026-04-24 15:23:11][INFO] Epoch 135/200 | loss_total=0.8795 | loss_rec=0.0438 | loss_wm=0.4976 | loss_nce=0.0014 | loss_vclub=0.1051 | loss_adv=3.3579 | ber_train=0.3281 | 0.1s
-[2026-04-24 15:23:12][INFO]   iter 0001/0001 | loss_total=0.8740 ber_train=0.2656 loss_est=-79.6915
-[2026-04-24 15:23:12][INFO] Epoch 136/200 | loss_total=0.8740 | loss_rec=0.0408 | loss_wm=0.4964 | loss_nce=0.0014 | loss_vclub=0.1158 | loss_adv=3.3412 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:12][INFO]   iter 0001/0001 | loss_total=0.8710 ber_train=0.2344 loss_est=-79.5846
-[2026-04-24 15:23:12][INFO] Epoch 137/200 | loss_total=0.8710 | loss_rec=0.0418 | loss_wm=0.4966 | loss_nce=0.0013 | loss_vclub=0.1005 | loss_adv=3.3030 | ber_train=0.2344 | 0.1s
-[2026-04-24 15:23:12][INFO]   iter 0001/0001 | loss_total=0.8621 ber_train=0.2812 loss_est=-79.7702
-[2026-04-24 15:23:12][INFO] Epoch 138/200 | loss_total=0.8621 | loss_rec=0.0371 | loss_wm=0.4953 | loss_nce=0.0014 | loss_vclub=0.0339 | loss_adv=3.2799 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:13][INFO]   iter 0001/0001 | loss_total=0.8620 ber_train=0.2969 loss_est=-79.6345
-[2026-04-24 15:23:13][INFO] Epoch 139/200 | loss_total=0.8620 | loss_rec=0.0363 | loss_wm=0.4956 | loss_nce=0.0014 | loss_vclub=0.0935 | loss_adv=3.2783 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:13][INFO]   iter 0001/0001 | loss_total=0.8601 ber_train=0.2812 loss_est=-79.2497
-[2026-04-24 15:23:13][INFO] Epoch 140/200 | loss_total=0.8601 | loss_rec=0.0371 | loss_wm=0.4953 | loss_nce=0.0014 | loss_vclub=0.0918 | loss_adv=3.2541 | ber_train=0.2812 | val_ber_clean=0.2812 | val_ber_attacked=0.3125 | 0.1s
-[2026-04-24 15:23:13][INFO]   iter 0001/0001 | loss_total=0.8594 ber_train=0.2656 loss_est=-79.7628
-[2026-04-24 15:23:13][INFO] Epoch 141/200 | loss_total=0.8594 | loss_rec=0.0411 | loss_wm=0.4942 | loss_nce=0.0014 | loss_vclub=0.0872 | loss_adv=3.2179 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:14][INFO]   iter 0001/0001 | loss_total=0.8556 ber_train=0.2812 loss_est=-79.5036
-[2026-04-24 15:23:14][INFO] Epoch 142/200 | loss_total=0.8556 | loss_rec=0.0416 | loss_wm=0.4946 | loss_nce=0.0013 | loss_vclub=0.0915 | loss_adv=3.1718 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:14][INFO]   iter 0001/0001 | loss_total=0.8545 ber_train=0.3125 loss_est=-79.5659
-[2026-04-24 15:23:14][INFO] Epoch 143/200 | loss_total=0.8545 | loss_rec=0.0422 | loss_wm=0.4944 | loss_nce=0.0013 | loss_vclub=0.0312 | loss_adv=3.1626 | ber_train=0.3125 | 0.1s
-[2026-04-24 15:23:14][INFO]   iter 0001/0001 | loss_total=0.8502 ber_train=0.2344 loss_est=-79.6527
-[2026-04-24 15:23:14][INFO] Epoch 144/200 | loss_total=0.8502 | loss_rec=0.0337 | loss_wm=0.4940 | loss_nce=0.0014 | loss_vclub=0.0401 | loss_adv=3.2064 | ber_train=0.2344 | 0.1s
-[2026-04-24 15:23:15][INFO]   iter 0001/0001 | loss_total=0.8440 ber_train=0.2500 loss_est=-79.4877
-[2026-04-24 15:23:15][INFO] Epoch 145/200 | loss_total=0.8440 | loss_rec=0.0344 | loss_wm=0.4931 | loss_nce=0.0014 | loss_vclub=0.0352 | loss_adv=3.1477 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:23:15][INFO]   iter 0001/0001 | loss_total=0.8380 ber_train=0.2812 loss_est=-79.5656
-[2026-04-24 15:23:15][INFO] Epoch 146/200 | loss_total=0.8380 | loss_rec=0.0324 | loss_wm=0.4927 | loss_nce=0.0013 | loss_vclub=0.0817 | loss_adv=3.1080 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:15][INFO]   iter 0001/0001 | loss_total=0.8417 ber_train=0.2812 loss_est=-79.7716
-[2026-04-24 15:23:15][INFO] Epoch 147/200 | loss_total=0.8417 | loss_rec=0.0421 | loss_wm=0.4922 | loss_nce=0.0012 | loss_vclub=0.0666 | loss_adv=3.0550 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:16][INFO]   iter 0001/0001 | loss_total=0.8464 ber_train=0.2500 loss_est=-79.7743
-[2026-04-24 15:23:16][INFO] Epoch 148/200 | loss_total=0.8464 | loss_rec=0.0438 | loss_wm=0.4920 | loss_nce=0.0012 | loss_vclub=0.1371 | loss_adv=3.0793 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:23:16][INFO]   iter 0001/0001 | loss_total=0.8386 ber_train=0.2812 loss_est=-79.7774
-[2026-04-24 15:23:16][INFO] Epoch 149/200 | loss_total=0.8386 | loss_rec=0.0398 | loss_wm=0.4921 | loss_nce=0.0012 | loss_vclub=0.1099 | loss_adv=3.0438 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:16][INFO]   iter 0001/0001 | loss_total=0.8344 ber_train=0.3125 loss_est=-79.3766
-[2026-04-24 15:23:16][INFO] Epoch 150/200 | loss_total=0.8344 | loss_rec=0.0311 | loss_wm=0.4940 | loss_nce=0.0012 | loss_vclub=0.0349 | loss_adv=3.0765 | ber_train=0.3125 | val_ber_clean=0.2812 | val_ber_attacked=0.2812 | 0.1s
-[2026-04-24 15:23:17][INFO]   iter 0001/0001 | loss_total=0.8351 ber_train=0.2812 loss_est=-79.7860
-[2026-04-24 15:23:17][INFO] Epoch 151/200 | loss_total=0.8351 | loss_rec=0.0401 | loss_wm=0.4930 | loss_nce=0.0012 | loss_vclub=0.1553 | loss_adv=2.9924 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:17][INFO]   iter 0001/0001 | loss_total=0.8274 ber_train=0.2969 loss_est=-79.5400
-[2026-04-24 15:23:17][INFO] Epoch 152/200 | loss_total=0.8274 | loss_rec=0.0389 | loss_wm=0.4906 | loss_nce=0.0012 | loss_vclub=0.0682 | loss_adv=2.9602 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:17][INFO]   iter 0001/0001 | loss_total=0.8304 ber_train=0.2969 loss_est=-79.5423
-[2026-04-24 15:23:17][INFO] Epoch 153/200 | loss_total=0.8304 | loss_rec=0.0386 | loss_wm=0.4912 | loss_nce=0.0012 | loss_vclub=0.0624 | loss_adv=2.9874 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:18][INFO]   iter 0001/0001 | loss_total=0.8213 ber_train=0.2812 loss_est=-79.5893
-[2026-04-24 15:23:18][INFO] Epoch 154/200 | loss_total=0.8213 | loss_rec=0.0318 | loss_wm=0.4915 | loss_nce=0.0012 | loss_vclub=0.0495 | loss_adv=2.9633 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:18][INFO]   iter 0001/0001 | loss_total=0.8180 ber_train=0.2812 loss_est=-79.3590
-[2026-04-24 15:23:18][INFO] Epoch 155/200 | loss_total=0.8180 | loss_rec=0.0381 | loss_wm=0.4892 | loss_nce=0.0011 | loss_vclub=0.0214 | loss_adv=2.8935 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:18][INFO]   iter 0001/0001 | loss_total=0.8163 ber_train=0.2969 loss_est=-79.4641
-[2026-04-24 15:23:18][INFO] Epoch 156/200 | loss_total=0.8163 | loss_rec=0.0305 | loss_wm=0.4904 | loss_nce=0.0012 | loss_vclub=0.0694 | loss_adv=2.9358 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:19][INFO]   iter 0001/0001 | loss_total=0.8121 ber_train=0.2969 loss_est=-79.5754
-[2026-04-24 15:23:19][INFO] Epoch 157/200 | loss_total=0.8121 | loss_rec=0.0334 | loss_wm=0.4890 | loss_nce=0.0011 | loss_vclub=0.0246 | loss_adv=2.8838 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:19][INFO]   iter 0001/0001 | loss_total=0.8151 ber_train=0.3125 loss_est=-79.4800
-[2026-04-24 15:23:19][INFO] Epoch 158/200 | loss_total=0.8151 | loss_rec=0.0397 | loss_wm=0.4891 | loss_nce=0.0011 | loss_vclub=0.0878 | loss_adv=2.8431 | ber_train=0.3125 | 0.1s
-[2026-04-24 15:23:19][INFO]   iter 0001/0001 | loss_total=0.8110 ber_train=0.2812 loss_est=-79.6246
-[2026-04-24 15:23:19][INFO] Epoch 159/200 | loss_total=0.8110 | loss_rec=0.0414 | loss_wm=0.4879 | loss_nce=0.0011 | loss_vclub=0.0974 | loss_adv=2.7959 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:20][INFO]   iter 0001/0001 | loss_total=0.8127 ber_train=0.2500 loss_est=-79.7407
-[2026-04-24 15:23:20][INFO] Epoch 160/200 | loss_total=0.8127 | loss_rec=0.0388 | loss_wm=0.4888 | loss_nce=0.0011 | loss_vclub=0.1197 | loss_adv=2.8290 | ber_train=0.2500 | val_ber_clean=0.2656 | val_ber_attacked=0.2969 | 0.1s
-[2026-04-24 15:23:20][INFO]   iter 0001/0001 | loss_total=0.8093 ber_train=0.2812 loss_est=-79.6706
-[2026-04-24 15:23:20][INFO] Epoch 161/200 | loss_total=0.8093 | loss_rec=0.0373 | loss_wm=0.4875 | loss_nce=0.0011 | loss_vclub=0.0699 | loss_adv=2.8275 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:20][INFO]   iter 0001/0001 | loss_total=0.8086 ber_train=0.2500 loss_est=-79.6211
-[2026-04-24 15:23:20][INFO] Epoch 162/200 | loss_total=0.8086 | loss_rec=0.0396 | loss_wm=0.4870 | loss_nce=0.0011 | loss_vclub=0.0768 | loss_adv=2.8007 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:23:21][INFO]   iter 0001/0001 | loss_total=0.8041 ber_train=0.2812 loss_est=-79.6200
-[2026-04-24 15:23:21][INFO] Epoch 163/200 | loss_total=0.8041 | loss_rec=0.0425 | loss_wm=0.4870 | loss_nce=0.0010 | loss_vclub=0.0602 | loss_adv=2.7292 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:21][INFO]   iter 0001/0001 | loss_total=0.8040 ber_train=0.2656 loss_est=-79.6406
-[2026-04-24 15:23:21][INFO] Epoch 164/200 | loss_total=0.8040 | loss_rec=0.0370 | loss_wm=0.4866 | loss_nce=0.0011 | loss_vclub=0.1150 | loss_adv=2.7815 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:21][INFO]   iter 0001/0001 | loss_total=0.7978 ber_train=0.2812 loss_est=-79.7649
-[2026-04-24 15:23:21][INFO] Epoch 165/200 | loss_total=0.7978 | loss_rec=0.0345 | loss_wm=0.4857 | loss_nce=0.0011 | loss_vclub=0.0573 | loss_adv=2.7602 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:22][INFO]   iter 0001/0001 | loss_total=0.7998 ber_train=0.2656 loss_est=-79.4577
-[2026-04-24 15:23:22][INFO] Epoch 166/200 | loss_total=0.7998 | loss_rec=0.0319 | loss_wm=0.4873 | loss_nce=0.0010 | loss_vclub=0.0504 | loss_adv=2.7899 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:22][INFO]   iter 0001/0001 | loss_total=0.8007 ber_train=0.2656 loss_est=-79.7541
-[2026-04-24 15:23:22][INFO] Epoch 167/200 | loss_total=0.8007 | loss_rec=0.0377 | loss_wm=0.4856 | loss_nce=0.0010 | loss_vclub=0.0870 | loss_adv=2.7553 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:22][INFO]   iter 0001/0001 | loss_total=0.7983 ber_train=0.3125 loss_est=-79.5144
-[2026-04-24 15:23:22][INFO] Epoch 168/200 | loss_total=0.7983 | loss_rec=0.0367 | loss_wm=0.4870 | loss_nce=0.0009 | loss_vclub=0.0556 | loss_adv=2.7313 | ber_train=0.3125 | 0.1s
-[2026-04-24 15:23:23][INFO]   iter 0001/0001 | loss_total=0.7967 ber_train=0.2656 loss_est=-79.5515
-[2026-04-24 15:23:23][INFO] Epoch 169/200 | loss_total=0.7967 | loss_rec=0.0306 | loss_wm=0.4852 | loss_nce=0.0011 | loss_vclub=0.1404 | loss_adv=2.7847 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:23][INFO]   iter 0001/0001 | loss_total=0.7911 ber_train=0.2812 loss_est=-79.4136
-[2026-04-24 15:23:23][INFO] Epoch 170/200 | loss_total=0.7911 | loss_rec=0.0308 | loss_wm=0.4858 | loss_nce=0.0010 | loss_vclub=0.0384 | loss_adv=2.7305 | ber_train=0.2812 | val_ber_clean=0.3125 | val_ber_attacked=0.2969 | 0.1s
-[2026-04-24 15:23:23][INFO]   iter 0001/0001 | loss_total=0.7985 ber_train=0.2812 loss_est=-79.5295
-[2026-04-24 15:23:23][INFO] Epoch 171/200 | loss_total=0.7985 | loss_rec=0.0368 | loss_wm=0.4845 | loss_nce=0.0010 | loss_vclub=0.0338 | loss_adv=2.7591 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:24][INFO]   iter 0001/0001 | loss_total=0.7987 ber_train=0.2812 loss_est=-79.5495
-[2026-04-24 15:23:24][INFO] Epoch 172/200 | loss_total=0.7987 | loss_rec=0.0380 | loss_wm=0.4865 | loss_nce=0.0009 | loss_vclub=0.1399 | loss_adv=2.7189 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:24][INFO]   iter 0001/0001 | loss_total=0.7948 ber_train=0.2812 loss_est=-79.3847
-[2026-04-24 15:23:24][INFO] Epoch 173/200 | loss_total=0.7948 | loss_rec=0.0345 | loss_wm=0.4851 | loss_nce=0.0010 | loss_vclub=0.1318 | loss_adv=2.7299 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:24][INFO]   iter 0001/0001 | loss_total=0.7969 ber_train=0.2969 loss_est=-79.5934
-[2026-04-24 15:23:24][INFO] Epoch 174/200 | loss_total=0.7969 | loss_rec=0.0365 | loss_wm=0.4853 | loss_nce=0.0010 | loss_vclub=0.1271 | loss_adv=2.7290 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:25][INFO]   iter 0001/0001 | loss_total=0.7964 ber_train=0.2969 loss_est=-79.6537
-[2026-04-24 15:23:25][INFO] Epoch 175/200 | loss_total=0.7964 | loss_rec=0.0326 | loss_wm=0.4851 | loss_nce=0.0010 | loss_vclub=0.0707 | loss_adv=2.7696 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:25][INFO]   iter 0001/0001 | loss_total=0.7957 ber_train=0.2656 loss_est=-79.6128
-[2026-04-24 15:23:25][INFO] Epoch 176/200 | loss_total=0.7957 | loss_rec=0.0358 | loss_wm=0.4846 | loss_nce=0.0009 | loss_vclub=0.3100 | loss_adv=2.7125 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:25][INFO]   iter 0001/0001 | loss_total=0.7959 ber_train=0.3125 loss_est=-79.6478
-[2026-04-24 15:23:25][INFO] Epoch 177/200 | loss_total=0.7959 | loss_rec=0.0386 | loss_wm=0.4843 | loss_nce=0.0010 | loss_vclub=0.0137 | loss_adv=2.7185 | ber_train=0.3125 | 0.1s
-[2026-04-24 15:23:25][INFO]   iter 0001/0001 | loss_total=0.7963 ber_train=0.2969 loss_est=-79.6351
-[2026-04-24 15:23:25][INFO] Epoch 178/200 | loss_total=0.7963 | loss_rec=0.0358 | loss_wm=0.4842 | loss_nce=0.0010 | loss_vclub=0.2300 | loss_adv=2.7297 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:26][INFO]   iter 0001/0001 | loss_total=0.7931 ber_train=0.2969 loss_est=-79.3686
-[2026-04-24 15:23:26][INFO] Epoch 179/200 | loss_total=0.7931 | loss_rec=0.0370 | loss_wm=0.4840 | loss_nce=0.0010 | loss_vclub=0.1210 | loss_adv=2.6993 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:26][INFO]   iter 0001/0001 | loss_total=0.7844 ber_train=0.2812 loss_est=-79.5852
-[2026-04-24 15:23:26][INFO] Epoch 180/200 | loss_total=0.7844 | loss_rec=0.0346 | loss_wm=0.4844 | loss_nce=0.0009 | loss_vclub=0.0098 | loss_adv=2.6443 | ber_train=0.2812 | val_ber_clean=0.2812 | val_ber_attacked=0.2969 | 0.1s
-[2026-04-24 15:23:26][INFO]   iter 0001/0001 | loss_total=0.7927 ber_train=0.3281 loss_est=-79.4570
-[2026-04-24 15:23:26][INFO] Epoch 181/200 | loss_total=0.7927 | loss_rec=0.0336 | loss_wm=0.4851 | loss_nce=0.0011 | loss_vclub=0.1740 | loss_adv=2.7116 | ber_train=0.3281 | 0.1s
-[2026-04-24 15:23:27][INFO]   iter 0001/0001 | loss_total=0.7942 ber_train=0.2969 loss_est=-79.3551
-[2026-04-24 15:23:27][INFO] Epoch 182/200 | loss_total=0.7942 | loss_rec=0.0431 | loss_wm=0.4829 | loss_nce=0.0010 | loss_vclub=0.0459 | loss_adv=2.6666 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:27][INFO]   iter 0001/0001 | loss_total=0.7898 ber_train=0.2969 loss_est=-79.3719
-[2026-04-24 15:23:27][INFO] Epoch 183/200 | loss_total=0.7898 | loss_rec=0.0335 | loss_wm=0.4833 | loss_nce=0.0011 | loss_vclub=0.0554 | loss_adv=2.7145 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:27][INFO]   iter 0001/0001 | loss_total=0.7864 ber_train=0.2500 loss_est=-79.5569
-[2026-04-24 15:23:27][INFO] Epoch 184/200 | loss_total=0.7864 | loss_rec=0.0334 | loss_wm=0.4817 | loss_nce=0.0011 | loss_vclub=0.0796 | loss_adv=2.6939 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:23:28][INFO]   iter 0001/0001 | loss_total=0.7905 ber_train=0.2188 loss_est=-79.5486
-[2026-04-24 15:23:28][INFO] Epoch 185/200 | loss_total=0.7905 | loss_rec=0.0345 | loss_wm=0.4831 | loss_nce=0.0010 | loss_vclub=0.1687 | loss_adv=2.7023 | ber_train=0.2188 | 0.1s
-[2026-04-24 15:23:28][INFO]   iter 0001/0001 | loss_total=0.7890 ber_train=0.2656 loss_est=-79.6689
-[2026-04-24 15:23:28][INFO] Epoch 186/200 | loss_total=0.7890 | loss_rec=0.0374 | loss_wm=0.4826 | loss_nce=0.0011 | loss_vclub=0.0642 | loss_adv=2.6719 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:28][INFO]   iter 0001/0001 | loss_total=0.7909 ber_train=0.2969 loss_est=-79.4142
-[2026-04-24 15:23:28][INFO] Epoch 187/200 | loss_total=0.7909 | loss_rec=0.0328 | loss_wm=0.4840 | loss_nce=0.0011 | loss_vclub=0.0550 | loss_adv=2.7237 | ber_train=0.2969 | 0.1s
-[2026-04-24 15:23:29][INFO]   iter 0001/0001 | loss_total=0.7943 ber_train=0.2500 loss_est=-79.6125
-[2026-04-24 15:23:29][INFO] Epoch 188/200 | loss_total=0.7943 | loss_rec=0.0364 | loss_wm=0.4832 | loss_nce=0.0011 | loss_vclub=0.2660 | loss_adv=2.7092 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:23:29][INFO]   iter 0001/0001 | loss_total=0.7878 ber_train=0.2812 loss_est=-79.7802
-[2026-04-24 15:23:29][INFO] Epoch 189/200 | loss_total=0.7878 | loss_rec=0.0332 | loss_wm=0.4817 | loss_nce=0.0011 | loss_vclub=0.1478 | loss_adv=2.7027 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:29][INFO]   iter 0001/0001 | loss_total=0.7926 ber_train=0.2656 loss_est=-79.5749
-[2026-04-24 15:23:29][INFO] Epoch 190/200 | loss_total=0.7926 | loss_rec=0.0336 | loss_wm=0.4810 | loss_nce=0.0013 | loss_vclub=0.2847 | loss_adv=2.7386 | ber_train=0.2656 | val_ber_clean=0.2656 | val_ber_attacked=0.2969 | 0.1s
-[2026-04-24 15:23:30][INFO]   iter 0001/0001 | loss_total=0.7920 ber_train=0.2812 loss_est=-79.6123
-[2026-04-24 15:23:30][INFO] Epoch 191/200 | loss_total=0.7920 | loss_rec=0.0313 | loss_wm=0.4812 | loss_nce=0.0012 | loss_vclub=0.0577 | loss_adv=2.7770 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:30][INFO]   iter 0001/0001 | loss_total=0.8005 ber_train=0.3281 loss_est=-79.4862
-[2026-04-24 15:23:30][INFO] Epoch 192/200 | loss_total=0.8005 | loss_rec=0.0374 | loss_wm=0.4824 | loss_nce=0.0012 | loss_vclub=0.2278 | loss_adv=2.7721 | ber_train=0.3281 | 0.1s
-[2026-04-24 15:23:30][INFO]   iter 0001/0001 | loss_total=0.7886 ber_train=0.2656 loss_est=-79.5477
-[2026-04-24 15:23:30][INFO] Epoch 193/200 | loss_total=0.7886 | loss_rec=0.0316 | loss_wm=0.4819 | loss_nce=0.0012 | loss_vclub=0.1613 | loss_adv=2.7232 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:31][INFO]   iter 0001/0001 | loss_total=0.7962 ber_train=0.2656 loss_est=-79.6594
-[2026-04-24 15:23:31][INFO] Epoch 194/200 | loss_total=0.7962 | loss_rec=0.0304 | loss_wm=0.4818 | loss_nce=0.0015 | loss_vclub=0.0632 | loss_adv=2.8197 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:31][INFO]   iter 0001/0001 | loss_total=0.7979 ber_train=0.2656 loss_est=-79.7030
-[2026-04-24 15:23:31][INFO] Epoch 195/200 | loss_total=0.7979 | loss_rec=0.0379 | loss_wm=0.4803 | loss_nce=0.0012 | loss_vclub=0.1301 | loss_adv=2.7720 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:31][INFO]   iter 0001/0001 | loss_total=0.8000 ber_train=0.2500 loss_est=-79.4278
-[2026-04-24 15:23:31][INFO] Epoch 196/200 | loss_total=0.8000 | loss_rec=0.0300 | loss_wm=0.4800 | loss_nce=0.0014 | loss_vclub=0.0561 | loss_adv=2.8793 | ber_train=0.2500 | 0.1s
-[2026-04-24 15:23:32][INFO]   iter 0001/0001 | loss_total=0.8009 ber_train=0.2812 loss_est=-79.4979
-[2026-04-24 15:23:32][INFO] Epoch 197/200 | loss_total=0.8009 | loss_rec=0.0333 | loss_wm=0.4809 | loss_nce=0.0012 | loss_vclub=0.2091 | loss_adv=2.8337 | ber_train=0.2812 | 0.1s
-[2026-04-24 15:23:32][INFO]   iter 0001/0001 | loss_total=0.8069 ber_train=0.3125 loss_est=-79.3328
-[2026-04-24 15:23:32][INFO] Epoch 198/200 | loss_total=0.8069 | loss_rec=0.0347 | loss_wm=0.4820 | loss_nce=0.0013 | loss_vclub=0.0001 | loss_adv=2.8886 | ber_train=0.3125 | 0.1s
-[2026-04-24 15:23:32][INFO]   iter 0001/0001 | loss_total=0.8050 ber_train=0.2656 loss_est=-79.4852
-[2026-04-24 15:23:32][INFO] Epoch 199/200 | loss_total=0.8050 | loss_rec=0.0350 | loss_wm=0.4808 | loss_nce=0.0013 | loss_vclub=0.1729 | loss_adv=2.8611 | ber_train=0.2656 | 0.1s
-[2026-04-24 15:23:32][INFO]   iter 0001/0001 | loss_total=0.8025 ber_train=0.2500 loss_est=-79.4059
-[2026-04-24 15:23:33][INFO] Epoch 200/200 | loss_total=0.8025 | loss_rec=0.0351 | loss_wm=0.4810 | loss_nce=0.0012 | loss_vclub=0.1755 | loss_adv=2.8338 | ber_train=0.2500 | val_ber_clean=0.3125 | val_ber_attacked=0.3125 | 0.1s
+[2026-04-25 00:14:36][INFO] [boost] WM module lr = 0.001 × 10.0 = 0.01
+[2026-04-25 00:14:37][INFO] Trainer initialized on cuda. start_epoch=1
+[2026-04-25 00:14:37][INFO]   iter 0001/0001 | loss_total=9.2112 ber_train=0.4688 loss_est=-79.4109
+[2026-04-25 00:14:37][INFO] Epoch 001/200 | loss_total=9.2112 | loss_rec=0.2355 | loss_wm=0.6866 | loss_nce=2.1101 | loss_vclub=0.0001 | loss_adv=9.4056 | ber_train=0.4688 | 0.3s
+[2026-04-25 00:14:37][INFO]   iter 0001/0001 | loss_total=8.6126 ber_train=0.4062 loss_est=-79.3348
+[2026-04-25 00:14:37][INFO] Epoch 002/200 | loss_total=8.6126 | loss_rec=0.1755 | loss_wm=0.6708 | loss_nce=1.7287 | loss_vclub=-0.0002 | loss_adv=9.3836 | ber_train=0.4062 | 0.1s
+[2026-04-25 00:14:38][INFO]   iter 0001/0001 | loss_total=8.2397 ber_train=0.3125 loss_est=-79.2875
+[2026-04-25 00:14:38][INFO] Epoch 003/200 | loss_total=8.2397 | loss_rec=0.1697 | loss_wm=0.6548 | loss_nce=1.5220 | loss_vclub=0.0059 | loss_adv=9.3735 | ber_train=0.3125 | 0.1s
+[2026-04-25 00:14:38][INFO]   iter 0001/0001 | loss_total=7.8735 ber_train=0.2969 loss_est=-79.4992
+[2026-04-25 00:14:38][INFO] Epoch 004/200 | loss_total=7.8735 | loss_rec=0.1307 | loss_wm=0.6392 | loss_nce=1.3507 | loss_vclub=0.0075 | loss_adv=9.3277 | ber_train=0.2969 | 0.1s
+[2026-04-25 00:14:38][INFO]   iter 0001/0001 | loss_total=7.5451 ber_train=0.2812 loss_est=-79.3340
+[2026-04-25 00:14:38][INFO] Epoch 005/200 | loss_total=7.5451 | loss_rec=0.1349 | loss_wm=0.6209 | loss_nce=1.2013 | loss_vclub=0.0078 | loss_adv=9.3324 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:39][INFO]   iter 0001/0001 | loss_total=7.1957 ber_train=0.2812 loss_est=-79.1479
+[2026-04-25 00:14:39][INFO] Epoch 006/200 | loss_total=7.1957 | loss_rec=0.1045 | loss_wm=0.6020 | loss_nce=1.0712 | loss_vclub=0.0036 | loss_adv=9.3334 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:39][INFO]   iter 0001/0001 | loss_total=6.9306 ber_train=0.2656 loss_est=-79.3582
+[2026-04-25 00:14:39][INFO] Epoch 007/200 | loss_total=6.9306 | loss_rec=0.1137 | loss_wm=0.5834 | loss_nce=0.9830 | loss_vclub=0.0112 | loss_adv=9.3236 | ber_train=0.2656 | 0.1s
+[2026-04-25 00:14:39][INFO]   iter 0001/0001 | loss_total=6.6573 ber_train=0.2812 loss_est=-79.4669
+[2026-04-25 00:14:39][INFO] Epoch 008/200 | loss_total=6.6573 | loss_rec=0.1171 | loss_wm=0.5649 | loss_nce=0.8915 | loss_vclub=0.0063 | loss_adv=9.3338 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:40][INFO]   iter 0001/0001 | loss_total=6.3819 ber_train=0.2812 loss_est=-79.0341
+[2026-04-25 00:14:40][INFO] Epoch 009/200 | loss_total=6.3819 | loss_rec=0.0772 | loss_wm=0.5498 | loss_nce=0.8072 | loss_vclub=0.0051 | loss_adv=9.3297 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:40][INFO]   iter 0001/0001 | loss_total=6.1359 ber_train=0.2656 loss_est=-79.3034
+[2026-04-25 00:14:40][INFO] Epoch 010/200 | loss_total=6.1359 | loss_rec=0.0918 | loss_wm=0.5350 | loss_nce=0.6936 | loss_vclub=0.0024 | loss_adv=9.3367 | ber_train=0.2656 | val_ber_clean=0.2812 | val_ber_attacked=0.2812 | 0.1s
+[2026-04-25 00:14:40][INFO]   iter 0001/0001 | loss_total=5.9130 ber_train=0.2500 loss_est=-79.2875
+[2026-04-25 00:14:40][INFO] Epoch 011/200 | loss_total=5.9130 | loss_rec=0.0815 | loss_wm=0.5249 | loss_nce=0.5827 | loss_vclub=0.0068 | loss_adv=9.3393 | ber_train=0.2500 | 0.1s
+[2026-04-25 00:14:41][INFO]   iter 0001/0001 | loss_total=5.7439 ber_train=0.2812 loss_est=-79.3959
+[2026-04-25 00:14:41][INFO] Epoch 012/200 | loss_total=5.7439 | loss_rec=0.0891 | loss_wm=0.5169 | loss_nce=0.4860 | loss_vclub=-0.0011 | loss_adv=9.3424 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:41][INFO]   iter 0001/0001 | loss_total=5.6116 ber_train=0.2812 loss_est=-79.4444
+[2026-04-25 00:14:41][INFO] Epoch 013/200 | loss_total=5.6116 | loss_rec=0.0899 | loss_wm=0.5115 | loss_nce=0.4071 | loss_vclub=0.0155 | loss_adv=9.3337 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:41][INFO]   iter 0001/0001 | loss_total=5.4905 ber_train=0.2812 loss_est=-79.0376
+[2026-04-25 00:14:41][INFO] Epoch 014/200 | loss_total=5.4905 | loss_rec=0.0878 | loss_wm=0.5076 | loss_nce=0.3267 | loss_vclub=0.0052 | loss_adv=9.3292 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:42][INFO]   iter 0001/0001 | loss_total=5.3870 ber_train=0.2656 loss_est=-79.2846
+[2026-04-25 00:14:42][INFO] Epoch 015/200 | loss_total=5.3870 | loss_rec=0.0944 | loss_wm=0.5046 | loss_nce=0.2469 | loss_vclub=0.0107 | loss_adv=9.3257 | ber_train=0.2656 | 0.1s
+[2026-04-25 00:14:42][INFO]   iter 0001/0001 | loss_total=5.3146 ber_train=0.2812 loss_est=-79.4554
+[2026-04-25 00:14:42][INFO] Epoch 016/200 | loss_total=5.3146 | loss_rec=0.1094 | loss_wm=0.5020 | loss_nce=0.1849 | loss_vclub=0.0250 | loss_adv=9.3235 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:42][INFO]   iter 0001/0001 | loss_total=5.2221 ber_train=0.2812 loss_est=-78.9530
+[2026-04-25 00:14:42][INFO] Epoch 017/200 | loss_total=5.2221 | loss_rec=0.1064 | loss_wm=0.4977 | loss_nce=0.1385 | loss_vclub=0.0091 | loss_adv=9.3188 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:43][INFO]   iter 0001/0001 | loss_total=5.1429 ber_train=0.2812 loss_est=-79.0741
+[2026-04-25 00:14:43][INFO] Epoch 018/200 | loss_total=5.1429 | loss_rec=0.0976 | loss_wm=0.4948 | loss_nce=0.0972 | loss_vclub=0.0034 | loss_adv=9.3158 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:43][INFO]   iter 0001/0001 | loss_total=5.0977 ber_train=0.2812 loss_est=-79.2432
+[2026-04-25 00:14:43][INFO] Epoch 019/200 | loss_total=5.0977 | loss_rec=0.1196 | loss_wm=0.4915 | loss_nce=0.0634 | loss_vclub=0.0099 | loss_adv=9.3104 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:43][INFO]   iter 0001/0001 | loss_total=5.0040 ber_train=0.2812 loss_est=-79.1759
+[2026-04-25 00:14:43][INFO] Epoch 020/200 | loss_total=5.0040 | loss_rec=0.1078 | loss_wm=0.4857 | loss_nce=0.0387 | loss_vclub=0.0117 | loss_adv=9.3076 | ber_train=0.2812 | val_ber_clean=0.2812 | val_ber_attacked=0.2812 | 0.1s
+[2026-04-25 00:14:44][INFO]   iter 0001/0001 | loss_total=4.9573 ber_train=0.2812 loss_est=-79.2569
+[2026-04-25 00:14:44][INFO] Epoch 021/200 | loss_total=4.9573 | loss_rec=0.1108 | loss_wm=0.4822 | loss_nce=0.0241 | loss_vclub=0.0226 | loss_adv=9.3058 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:44][INFO]   iter 0001/0001 | loss_total=4.9217 ber_train=0.2656 loss_est=-79.2349
+[2026-04-25 00:14:44][INFO] Epoch 022/200 | loss_total=4.9217 | loss_rec=0.1038 | loss_wm=0.4800 | loss_nce=0.0181 | loss_vclub=0.0102 | loss_adv=9.3166 | ber_train=0.2656 | 0.1s
+[2026-04-25 00:14:44][INFO]   iter 0001/0001 | loss_total=4.8695 ber_train=0.2344 loss_est=-79.4292
+[2026-04-25 00:14:44][INFO] Epoch 023/200 | loss_total=4.8695 | loss_rec=0.0921 | loss_wm=0.4762 | loss_nce=0.0155 | loss_vclub=0.0081 | loss_adv=9.3057 | ber_train=0.2344 | 0.1s
+[2026-04-25 00:14:45][INFO]   iter 0001/0001 | loss_total=4.8431 ber_train=0.2500 loss_est=-79.0418
+[2026-04-25 00:14:45][INFO] Epoch 024/200 | loss_total=4.8431 | loss_rec=0.1005 | loss_wm=0.4730 | loss_nce=0.0123 | loss_vclub=0.0271 | loss_adv=9.3124 | ber_train=0.2500 | 0.1s
+[2026-04-25 00:14:45][INFO]   iter 0001/0001 | loss_total=4.8371 ber_train=0.2812 loss_est=-79.1500
+[2026-04-25 00:14:45][INFO] Epoch 025/200 | loss_total=4.8371 | loss_rec=0.0835 | loss_wm=0.4744 | loss_nce=0.0100 | loss_vclub=0.0205 | loss_adv=9.3180 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:45][INFO]   iter 0001/0001 | loss_total=4.8162 ber_train=0.2656 loss_est=-79.3048
+[2026-04-25 00:14:45][INFO] Epoch 026/200 | loss_total=4.8162 | loss_rec=0.0759 | loss_wm=0.4732 | loss_nce=0.0081 | loss_vclub=0.0158 | loss_adv=9.3131 | ber_train=0.2656 | 0.1s
+[2026-04-25 00:14:46][INFO]   iter 0001/0001 | loss_total=4.8291 ber_train=0.2344 loss_est=-79.5233
+[2026-04-25 00:14:46][INFO] Epoch 027/200 | loss_total=4.8291 | loss_rec=0.0919 | loss_wm=0.4731 | loss_nce=0.0067 | loss_vclub=0.0154 | loss_adv=9.3076 | ber_train=0.2344 | 0.1s
+[2026-04-25 00:14:46][INFO]   iter 0001/0001 | loss_total=4.8175 ber_train=0.1875 loss_est=-79.0645
+[2026-04-25 00:14:46][INFO] Epoch 028/200 | loss_total=4.8175 | loss_rec=0.0923 | loss_wm=0.4719 | loss_nce=0.0059 | loss_vclub=0.0254 | loss_adv=9.2937 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:46][INFO]   iter 0001/0001 | loss_total=4.8294 ber_train=0.2344 loss_est=-79.5431
+[2026-04-25 00:14:46][INFO] Epoch 029/200 | loss_total=4.8294 | loss_rec=0.0992 | loss_wm=0.4725 | loss_nce=0.0054 | loss_vclub=0.0239 | loss_adv=9.2924 | ber_train=0.2344 | 0.1s
+[2026-04-25 00:14:47][INFO]   iter 0001/0001 | loss_total=4.8180 ber_train=0.2500 loss_est=-79.4277
+[2026-04-25 00:14:47][INFO] Epoch 030/200 | loss_total=4.8180 | loss_rec=0.0819 | loss_wm=0.4731 | loss_nce=0.0048 | loss_vclub=0.0526 | loss_adv=9.3182 | ber_train=0.2500 | val_ber_clean=0.2031 | val_ber_attacked=0.2812 | 0.1s
+[2026-04-25 00:14:47][INFO]   iter 0001/0001 | loss_total=4.8219 ber_train=0.2812 loss_est=-79.3884
+[2026-04-25 00:14:47][INFO] Epoch 031/200 | loss_total=4.8219 | loss_rec=0.0850 | loss_wm=0.4733 | loss_nce=0.0041 | loss_vclub=0.0606 | loss_adv=9.3247 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:47][INFO]   iter 0001/0001 | loss_total=4.7765 ber_train=0.1719 loss_est=-79.3453
+[2026-04-25 00:14:47][INFO] Epoch 032/200 | loss_total=4.7765 | loss_rec=0.0808 | loss_wm=0.4692 | loss_nce=0.0035 | loss_vclub=0.0216 | loss_adv=9.2995 | ber_train=0.1719 | 0.1s
+[2026-04-25 00:14:48][INFO]   iter 0001/0001 | loss_total=4.7830 ber_train=0.1875 loss_est=-79.2078
+[2026-04-25 00:14:48][INFO] Epoch 033/200 | loss_total=4.7830 | loss_rec=0.0926 | loss_wm=0.4687 | loss_nce=0.0031 | loss_vclub=0.0133 | loss_adv=9.2978 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:48][INFO]   iter 0001/0001 | loss_total=4.7689 ber_train=0.2500 loss_est=-79.4995
+[2026-04-25 00:14:48][INFO] Epoch 034/200 | loss_total=4.7689 | loss_rec=0.0915 | loss_wm=0.4674 | loss_nce=0.0030 | loss_vclub=0.0228 | loss_adv=9.3056 | ber_train=0.2500 | 0.1s
+[2026-04-25 00:14:48][INFO]   iter 0001/0001 | loss_total=4.7278 ber_train=0.1875 loss_est=-79.3887
+[2026-04-25 00:14:48][INFO] Epoch 035/200 | loss_total=4.7278 | loss_rec=0.1042 | loss_wm=0.4621 | loss_nce=0.0030 | loss_vclub=0.0434 | loss_adv=9.3000 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:49][INFO]   iter 0001/0001 | loss_total=4.7477 ber_train=0.2656 loss_est=-79.2574
+[2026-04-25 00:14:49][INFO] Epoch 036/200 | loss_total=4.7477 | loss_rec=0.0866 | loss_wm=0.4658 | loss_nce=0.0030 | loss_vclub=0.0296 | loss_adv=9.3221 | ber_train=0.2656 | 0.1s
+[2026-04-25 00:14:49][INFO]   iter 0001/0001 | loss_total=4.6965 ber_train=0.2031 loss_est=-79.5313
+[2026-04-25 00:14:49][INFO] Epoch 037/200 | loss_total=4.6965 | loss_rec=0.1043 | loss_wm=0.4589 | loss_nce=0.0029 | loss_vclub=0.0227 | loss_adv=9.3068 | ber_train=0.2031 | 0.1s
+[2026-04-25 00:14:49][INFO]   iter 0001/0001 | loss_total=4.7908 ber_train=0.2812 loss_est=-79.6564
+[2026-04-25 00:14:49][INFO] Epoch 038/200 | loss_total=4.7908 | loss_rec=0.1070 | loss_wm=0.4681 | loss_nce=0.0029 | loss_vclub=0.0517 | loss_adv=9.3140 | ber_train=0.2812 | 0.1s
+[2026-04-25 00:14:50][INFO]   iter 0001/0001 | loss_total=4.6970 ber_train=0.2188 loss_est=-79.3785
+[2026-04-25 00:14:50][INFO] Epoch 039/200 | loss_total=4.6970 | loss_rec=0.0932 | loss_wm=0.4601 | loss_nce=0.0028 | loss_vclub=0.0188 | loss_adv=9.3123 | ber_train=0.2188 | 0.1s
+[2026-04-25 00:14:50][INFO]   iter 0001/0001 | loss_total=4.7925 ber_train=0.2188 loss_est=-79.5060
+[2026-04-25 00:14:50][INFO] Epoch 040/200 | loss_total=4.7925 | loss_rec=0.1174 | loss_wm=0.4672 | loss_nce=0.0027 | loss_vclub=0.0538 | loss_adv=9.3272 | ber_train=0.2188 | val_ber_clean=0.1875 | val_ber_attacked=0.1875 | 0.1s
+[2026-04-25 00:14:51][INFO]   iter 0001/0001 | loss_total=4.6160 ber_train=0.1719 loss_est=-79.5391
+[2026-04-25 00:14:51][INFO] Epoch 041/200 | loss_total=4.6160 | loss_rec=0.0883 | loss_wm=0.4525 | loss_nce=0.0027 | loss_vclub=0.0377 | loss_adv=9.3072 | ber_train=0.1719 | 0.1s
+[2026-04-25 00:14:51][INFO]   iter 0001/0001 | loss_total=4.5718 ber_train=0.2031 loss_est=-79.4988
+[2026-04-25 00:14:51][INFO] Epoch 042/200 | loss_total=4.5718 | loss_rec=0.0986 | loss_wm=0.4470 | loss_nce=0.0028 | loss_vclub=0.0154 | loss_adv=9.3021 | ber_train=0.2031 | 0.1s
+[2026-04-25 00:14:51][INFO]   iter 0001/0001 | loss_total=4.5708 ber_train=0.1875 loss_est=-79.4440
+[2026-04-25 00:14:51][INFO] Epoch 043/200 | loss_total=4.5708 | loss_rec=0.1321 | loss_wm=0.4436 | loss_nce=0.0030 | loss_vclub=0.0246 | loss_adv=9.3052 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:52][INFO]   iter 0001/0001 | loss_total=4.5617 ber_train=0.1875 loss_est=-79.6868
+[2026-04-25 00:14:52][INFO] Epoch 044/200 | loss_total=4.5617 | loss_rec=0.1291 | loss_wm=0.4429 | loss_nce=0.0034 | loss_vclub=0.0781 | loss_adv=9.3072 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:52][INFO]   iter 0001/0001 | loss_total=4.5200 ber_train=0.1875 loss_est=-79.4915
+[2026-04-25 00:14:52][INFO] Epoch 045/200 | loss_total=4.5200 | loss_rec=0.1559 | loss_wm=0.4360 | loss_nce=0.0040 | loss_vclub=0.0269 | loss_adv=9.2955 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:52][INFO]   iter 0001/0001 | loss_total=4.4125 ber_train=0.1875 loss_est=-79.5218
+[2026-04-25 00:14:52][INFO] Epoch 046/200 | loss_total=4.4125 | loss_rec=0.1502 | loss_wm=0.4257 | loss_nce=0.0050 | loss_vclub=0.0332 | loss_adv=9.3058 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:53][INFO]   iter 0001/0001 | loss_total=4.5458 ber_train=0.2031 loss_est=-79.4943
+[2026-04-25 00:14:53][INFO] Epoch 047/200 | loss_total=4.5458 | loss_rec=0.1564 | loss_wm=0.4384 | loss_nce=0.0052 | loss_vclub=0.0083 | loss_adv=9.3267 | ber_train=0.2031 | 0.1s
+[2026-04-25 00:14:53][INFO]   iter 0001/0001 | loss_total=4.4326 ber_train=0.1875 loss_est=-79.5056
+[2026-04-25 00:14:53][INFO] Epoch 048/200 | loss_total=4.4326 | loss_rec=0.1764 | loss_wm=0.4239 | loss_nce=0.0168 | loss_vclub=0.0865 | loss_adv=9.2969 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:53][INFO]   iter 0001/0001 | loss_total=4.3664 ber_train=0.1875 loss_est=-79.4967
+[2026-04-25 00:14:53][INFO] Epoch 049/200 | loss_total=4.3664 | loss_rec=0.1763 | loss_wm=0.4184 | loss_nce=0.0063 | loss_vclub=0.0452 | loss_adv=9.3112 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:53][INFO]   iter 0001/0001 | loss_total=4.1832 ber_train=0.1875 loss_est=-79.3602
+[2026-04-25 00:14:54][INFO] Epoch 050/200 | loss_total=4.1832 | loss_rec=0.1796 | loss_wm=0.3997 | loss_nce=0.0069 | loss_vclub=0.0461 | loss_adv=9.2991 | ber_train=0.1875 | val_ber_clean=0.1875 | val_ber_attacked=0.1875 | 0.1s
+[2026-04-25 00:14:54][INFO]   iter 0001/0001 | loss_total=4.2254 ber_train=0.1875 loss_est=-79.5029
+[2026-04-25 00:14:54][INFO] Epoch 051/200 | loss_total=4.2254 | loss_rec=0.1905 | loss_wm=0.4010 | loss_nce=0.0245 | loss_vclub=0.0577 | loss_adv=9.2958 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:54][INFO]   iter 0001/0001 | loss_total=4.0647 ber_train=0.1875 loss_est=-79.6785
+[2026-04-25 00:14:54][INFO] Epoch 052/200 | loss_total=4.0647 | loss_rec=0.2108 | loss_wm=0.3825 | loss_nce=0.0292 | loss_vclub=0.0496 | loss_adv=9.3138 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:55][INFO]   iter 0001/0001 | loss_total=3.9746 ber_train=0.1875 loss_est=-79.6204
+[2026-04-25 00:14:55][INFO] Epoch 053/200 | loss_total=3.9746 | loss_rec=0.1896 | loss_wm=0.3774 | loss_nce=0.0108 | loss_vclub=0.0241 | loss_adv=9.3084 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:55][INFO]   iter 0001/0001 | loss_total=3.9157 ber_train=0.1875 loss_est=-79.6817
+[2026-04-25 00:14:55][INFO] Epoch 054/200 | loss_total=3.9157 | loss_rec=0.2032 | loss_wm=0.3708 | loss_nce=0.0043 | loss_vclub=0.0415 | loss_adv=9.3045 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:55][INFO]   iter 0001/0001 | loss_total=3.9584 ber_train=0.1875 loss_est=-79.5469
+[2026-04-25 00:14:55][INFO] Epoch 055/200 | loss_total=3.9584 | loss_rec=0.2109 | loss_wm=0.3744 | loss_nce=0.0033 | loss_vclub=0.0136 | loss_adv=9.3231 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:56][INFO]   iter 0001/0001 | loss_total=3.8071 ber_train=0.1875 loss_est=-79.6770
+[2026-04-25 00:14:56][INFO] Epoch 056/200 | loss_total=3.8071 | loss_rec=0.1566 | loss_wm=0.3647 | loss_nce=0.0040 | loss_vclub=0.0306 | loss_adv=9.3140 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:56][INFO]   iter 0001/0001 | loss_total=3.7665 ber_train=0.2344 loss_est=-79.2515
+[2026-04-25 00:14:56][INFO] Epoch 057/200 | loss_total=3.7665 | loss_rec=0.2150 | loss_wm=0.3547 | loss_nce=0.0049 | loss_vclub=0.0134 | loss_adv=9.3255 | ber_train=0.2344 | 0.1s
+[2026-04-25 00:14:56][INFO]   iter 0001/0001 | loss_total=3.6080 ber_train=0.1719 loss_est=-79.3212
+[2026-04-25 00:14:56][INFO] Epoch 058/200 | loss_total=3.6080 | loss_rec=0.2132 | loss_wm=0.3389 | loss_nce=0.0062 | loss_vclub=0.0126 | loss_adv=9.3084 | ber_train=0.1719 | 0.1s
+[2026-04-25 00:14:57][INFO]   iter 0001/0001 | loss_total=3.6278 ber_train=0.1875 loss_est=-79.5715
+[2026-04-25 00:14:57][INFO] Epoch 059/200 | loss_total=3.6278 | loss_rec=0.2176 | loss_wm=0.3403 | loss_nce=0.0070 | loss_vclub=0.0905 | loss_adv=9.3350 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:57][INFO]   iter 0001/0001 | loss_total=3.5597 ber_train=0.1719 loss_est=-79.7368
+[2026-04-25 00:14:57][INFO] Epoch 060/200 | loss_total=3.5597 | loss_rec=0.2223 | loss_wm=0.3329 | loss_nce=0.0080 | loss_vclub=0.0715 | loss_adv=9.3101 | ber_train=0.1719 | val_ber_clean=0.1562 | val_ber_attacked=0.1719 | 0.1s
+[2026-04-25 00:14:58][INFO]   iter 0001/0001 | loss_total=3.5911 ber_train=0.1875 loss_est=-79.7197
+[2026-04-25 00:14:58][INFO] Epoch 061/200 | loss_total=3.5911 | loss_rec=0.2795 | loss_wm=0.3302 | loss_nce=0.0096 | loss_vclub=0.0301 | loss_adv=9.3272 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:58][INFO]   iter 0001/0001 | loss_total=3.3716 ber_train=0.1406 loss_est=-79.3193
+[2026-04-25 00:14:58][INFO] Epoch 062/200 | loss_total=3.3716 | loss_rec=0.2422 | loss_wm=0.3119 | loss_nce=0.0105 | loss_vclub=0.1000 | loss_adv=9.3206 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:14:58][INFO]   iter 0001/0001 | loss_total=3.4728 ber_train=0.1875 loss_est=-79.5637
+[2026-04-25 00:14:58][INFO] Epoch 063/200 | loss_total=3.4728 | loss_rec=0.2196 | loss_wm=0.3244 | loss_nce=0.0096 | loss_vclub=0.0417 | loss_adv=9.3036 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:58][INFO]   iter 0001/0001 | loss_total=3.4896 ber_train=0.1875 loss_est=-79.7007
+[2026-04-25 00:14:58][INFO] Epoch 064/200 | loss_total=3.4896 | loss_rec=0.2602 | loss_wm=0.3222 | loss_nce=0.0074 | loss_vclub=0.0367 | loss_adv=9.3086 | ber_train=0.1875 | 0.1s
+[2026-04-25 00:14:59][INFO]   iter 0001/0001 | loss_total=3.2651 ber_train=0.1406 loss_est=-79.7269
+[2026-04-25 00:14:59][INFO] Epoch 065/200 | loss_total=3.2651 | loss_rec=0.2313 | loss_wm=0.3027 | loss_nce=0.0064 | loss_vclub=0.0726 | loss_adv=9.3213 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:14:59][INFO]   iter 0001/0001 | loss_total=3.1338 ber_train=0.1406 loss_est=-79.7068
+[2026-04-25 00:14:59][INFO] Epoch 066/200 | loss_total=3.1338 | loss_rec=0.2269 | loss_wm=0.2902 | loss_nce=0.0051 | loss_vclub=0.1155 | loss_adv=9.3163 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:14:59][INFO]   iter 0001/0001 | loss_total=3.1597 ber_train=0.1406 loss_est=-79.5462
+[2026-04-25 00:14:59][INFO] Epoch 067/200 | loss_total=3.1597 | loss_rec=0.1980 | loss_wm=0.2957 | loss_nce=0.0043 | loss_vclub=0.0079 | loss_adv=9.3274 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:15:00][INFO]   iter 0001/0001 | loss_total=3.1691 ber_train=0.1406 loss_est=-79.3951
+[2026-04-25 00:15:00][INFO] Epoch 068/200 | loss_total=3.1691 | loss_rec=0.2008 | loss_wm=0.2964 | loss_nce=0.0040 | loss_vclub=0.0632 | loss_adv=9.3170 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:15:00][INFO]   iter 0001/0001 | loss_total=2.9758 ber_train=0.1406 loss_est=-79.5694
+[2026-04-25 00:15:00][INFO] Epoch 069/200 | loss_total=2.9758 | loss_rec=0.2274 | loss_wm=0.2743 | loss_nce=0.0057 | loss_vclub=0.0053 | loss_adv=9.3174 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:15:00][INFO]   iter 0001/0001 | loss_total=3.1038 ber_train=0.1406 loss_est=-79.6710
+[2026-04-25 00:15:00][INFO] Epoch 070/200 | loss_total=3.1038 | loss_rec=0.1689 | loss_wm=0.2920 | loss_nce=0.0146 | loss_vclub=0.0205 | loss_adv=9.3257 | ber_train=0.1406 | val_ber_clean=0.1719 | val_ber_attacked=0.1719 | 0.1s
+[2026-04-25 00:15:01][INFO]   iter 0001/0001 | loss_total=3.0418 ber_train=0.1406 loss_est=-79.6054
+[2026-04-25 00:15:01][INFO] Epoch 071/200 | loss_total=3.0418 | loss_rec=0.1954 | loss_wm=0.2814 | loss_nce=0.0319 | loss_vclub=0.0673 | loss_adv=9.3147 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:15:01][INFO]   iter 0001/0001 | loss_total=2.9686 ber_train=0.1719 loss_est=-79.5730
+[2026-04-25 00:15:01][INFO] Epoch 072/200 | loss_total=2.9686 | loss_rec=0.2284 | loss_wm=0.2697 | loss_nce=0.0432 | loss_vclub=0.0457 | loss_adv=9.3154 | ber_train=0.1719 | 0.1s
+[2026-04-25 00:15:01][INFO]   iter 0001/0001 | loss_total=2.8999 ber_train=0.1719 loss_est=-79.7245
+[2026-04-25 00:15:01][INFO] Epoch 073/200 | loss_total=2.8999 | loss_rec=0.2116 | loss_wm=0.2644 | loss_nce=0.0441 | loss_vclub=0.0669 | loss_adv=9.3214 | ber_train=0.1719 | 0.1s
+[2026-04-25 00:15:02][INFO]   iter 0001/0001 | loss_total=3.0798 ber_train=0.0938 loss_est=-79.5707
+[2026-04-25 00:15:02][INFO] Epoch 074/200 | loss_total=3.0798 | loss_rec=0.2082 | loss_wm=0.2838 | loss_nce=0.0341 | loss_vclub=0.0822 | loss_adv=9.3237 | ber_train=0.0938 | 0.1s
+[2026-04-25 00:15:02][INFO]   iter 0001/0001 | loss_total=2.8684 ber_train=0.1406 loss_est=-79.5222
+[2026-04-25 00:15:02][INFO] Epoch 075/200 | loss_total=2.8684 | loss_rec=0.1984 | loss_wm=0.2647 | loss_nce=0.0228 | loss_vclub=0.0337 | loss_adv=9.3318 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:15:02][INFO]   iter 0001/0001 | loss_total=2.8074 ber_train=0.1719 loss_est=-79.5628
+[2026-04-25 00:15:02][INFO] Epoch 076/200 | loss_total=2.8074 | loss_rec=0.2120 | loss_wm=0.2580 | loss_nce=0.0152 | loss_vclub=0.0395 | loss_adv=9.3326 | ber_train=0.1719 | 0.1s
+[2026-04-25 00:15:03][INFO]   iter 0001/0001 | loss_total=2.9842 ber_train=0.1719 loss_est=-79.4072
+[2026-04-25 00:15:03][INFO] Epoch 077/200 | loss_total=2.9842 | loss_rec=0.2268 | loss_wm=0.2746 | loss_nce=0.0111 | loss_vclub=0.0529 | loss_adv=9.3139 | ber_train=0.1719 | 0.1s
+[2026-04-25 00:15:03][INFO]   iter 0001/0001 | loss_total=2.7389 ber_train=0.1562 loss_est=-79.5202
+[2026-04-25 00:15:03][INFO] Epoch 078/200 | loss_total=2.7389 | loss_rec=0.2092 | loss_wm=0.2521 | loss_nce=0.0090 | loss_vclub=0.0583 | loss_adv=9.3273 | ber_train=0.1562 | 0.1s
+[2026-04-25 00:15:03][INFO]   iter 0001/0001 | loss_total=2.7772 ber_train=0.1250 loss_est=-79.5904
+[2026-04-25 00:15:03][INFO] Epoch 079/200 | loss_total=2.7772 | loss_rec=0.2140 | loss_wm=0.2553 | loss_nce=0.0101 | loss_vclub=0.0879 | loss_adv=9.3314 | ber_train=0.1250 | 0.1s
+[2026-04-25 00:15:04][INFO]   iter 0001/0001 | loss_total=2.8470 ber_train=0.0938 loss_est=-79.5256
+[2026-04-25 00:15:04][INFO] Epoch 080/200 | loss_total=2.8470 | loss_rec=0.1965 | loss_wm=0.2639 | loss_nce=0.0112 | loss_vclub=0.0853 | loss_adv=9.3319 | ber_train=0.0938 | val_ber_clean=0.1406 | val_ber_attacked=0.1250 | 0.1s
+[2026-04-25 00:15:04][INFO]   iter 0001/0001 | loss_total=2.6420 ber_train=0.1250 loss_est=-79.6624
+[2026-04-25 00:15:04][INFO] Epoch 081/200 | loss_total=2.6420 | loss_rec=0.2243 | loss_wm=0.2404 | loss_nce=0.0133 | loss_vclub=0.0511 | loss_adv=9.3305 | ber_train=0.1250 | 0.1s
+[2026-04-25 00:15:04][INFO]   iter 0001/0001 | loss_total=2.6752 ber_train=0.1406 loss_est=-79.5951
+[2026-04-25 00:15:04][INFO] Epoch 082/200 | loss_total=2.6752 | loss_rec=0.2156 | loss_wm=0.2446 | loss_nce=0.0139 | loss_vclub=0.0745 | loss_adv=9.3249 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:15:05][INFO]   iter 0001/0001 | loss_total=2.6751 ber_train=0.1406 loss_est=-79.6658
+[2026-04-25 00:15:05][INFO] Epoch 083/200 | loss_total=2.6751 | loss_rec=0.2304 | loss_wm=0.2432 | loss_nce=0.0125 | loss_vclub=0.0672 | loss_adv=9.3208 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:15:05][INFO]   iter 0001/0001 | loss_total=2.6914 ber_train=0.1406 loss_est=-79.3705
+[2026-04-25 00:15:05][INFO] Epoch 084/200 | loss_total=2.6914 | loss_rec=0.2462 | loss_wm=0.2438 | loss_nce=0.0074 | loss_vclub=0.0825 | loss_adv=9.3223 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:15:05][INFO]   iter 0001/0001 | loss_total=2.6311 ber_train=0.1250 loss_est=-79.5451
+[2026-04-25 00:15:05][INFO] Epoch 085/200 | loss_total=2.6311 | loss_rec=0.1998 | loss_wm=0.2427 | loss_nce=0.0044 | loss_vclub=0.0519 | loss_adv=9.3187 | ber_train=0.1250 | 0.1s
+[2026-04-25 00:15:06][INFO]   iter 0001/0001 | loss_total=2.6477 ber_train=0.1250 loss_est=-79.6755
+[2026-04-25 00:15:06][INFO] Epoch 086/200 | loss_total=2.6477 | loss_rec=0.2357 | loss_wm=0.2409 | loss_nce=0.0030 | loss_vclub=0.0623 | loss_adv=9.3247 | ber_train=0.1250 | 0.1s
+[2026-04-25 00:15:06][INFO]   iter 0001/0001 | loss_total=2.5410 ber_train=0.1250 loss_est=-79.5746
+[2026-04-25 00:15:06][INFO] Epoch 087/200 | loss_total=2.5410 | loss_rec=0.2040 | loss_wm=0.2335 | loss_nce=0.0024 | loss_vclub=0.0344 | loss_adv=9.3194 | ber_train=0.1250 | 0.1s
+[2026-04-25 00:15:06][INFO]   iter 0001/0001 | loss_total=2.5525 ber_train=0.1406 loss_est=-79.3929
+[2026-04-25 00:15:06][INFO] Epoch 088/200 | loss_total=2.5525 | loss_rec=0.2070 | loss_wm=0.2343 | loss_nce=0.0023 | loss_vclub=0.0475 | loss_adv=9.3163 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:15:07][INFO]   iter 0001/0001 | loss_total=2.6169 ber_train=0.1250 loss_est=-79.3015
+[2026-04-25 00:15:07][INFO] Epoch 089/200 | loss_total=2.6169 | loss_rec=0.2467 | loss_wm=0.2368 | loss_nce=0.0025 | loss_vclub=0.0496 | loss_adv=9.3009 | ber_train=0.1250 | 0.1s
+[2026-04-25 00:15:07][INFO]   iter 0001/0001 | loss_total=2.4449 ber_train=0.1250 loss_est=-79.5735
+[2026-04-25 00:15:07][INFO] Epoch 090/200 | loss_total=2.4449 | loss_rec=0.2295 | loss_wm=0.2212 | loss_nce=0.0030 | loss_vclub=0.0572 | loss_adv=9.3182 | ber_train=0.1250 | val_ber_clean=0.1250 | val_ber_attacked=0.1250 | 0.1s
+[2026-04-25 00:15:08][INFO]   iter 0001/0001 | loss_total=2.4981 ber_train=0.0938 loss_est=-79.7037
+[2026-04-25 00:15:08][INFO] Epoch 091/200 | loss_total=2.4981 | loss_rec=0.1977 | loss_wm=0.2297 | loss_nce=0.0036 | loss_vclub=0.0759 | loss_adv=9.3162 | ber_train=0.0938 | 0.1s
+[2026-04-25 00:15:08][INFO]   iter 0001/0001 | loss_total=2.4686 ber_train=0.1250 loss_est=-79.6174
+[2026-04-25 00:15:08][INFO] Epoch 092/200 | loss_total=2.4686 | loss_rec=0.2355 | loss_wm=0.2228 | loss_nce=0.0052 | loss_vclub=0.0461 | loss_adv=9.3045 | ber_train=0.1250 | 0.1s
+[2026-04-25 00:15:08][INFO]   iter 0001/0001 | loss_total=2.5978 ber_train=0.1406 loss_est=-79.5902
+[2026-04-25 00:15:08][INFO] Epoch 093/200 | loss_total=2.5978 | loss_rec=0.2562 | loss_wm=0.2335 | loss_nce=0.0062 | loss_vclub=0.1407 | loss_adv=9.3094 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:15:09][INFO]   iter 0001/0001 | loss_total=2.4908 ber_train=0.1406 loss_est=-79.6260
+[2026-04-25 00:15:09][INFO] Epoch 094/200 | loss_total=2.4908 | loss_rec=0.2124 | loss_wm=0.2273 | loss_nce=0.0052 | loss_vclub=0.0940 | loss_adv=9.3158 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:15:09][INFO]   iter 0001/0001 | loss_total=2.4270 ber_train=0.1406 loss_est=-79.5396
+[2026-04-25 00:15:09][INFO] Epoch 095/200 | loss_total=2.4270 | loss_rec=0.2483 | loss_wm=0.2174 | loss_nce=0.0047 | loss_vclub=0.0832 | loss_adv=9.3198 | ber_train=0.1406 | 0.1s
+[2026-04-25 00:15:09][INFO]   iter 0001/0001 | loss_total=2.4385 ber_train=0.1250 loss_est=-79.6478
+[2026-04-25 00:15:09][INFO] Epoch 096/200 | loss_total=2.4385 | loss_rec=0.1973 | loss_wm=0.2236 | loss_nce=0.0048 | loss_vclub=0.0210 | loss_adv=9.3179 | ber_train=0.1250 | 0.1s
+[2026-04-25 00:15:10][INFO]   iter 0001/0001 | loss_total=2.3999 ber_train=0.1250 loss_est=-79.5983
+[2026-04-25 00:15:10][INFO] Epoch 097/200 | loss_total=2.3999 | loss_rec=0.2135 | loss_wm=0.2181 | loss_nce=0.0055 | loss_vclub=0.0683 | loss_adv=9.3145 | ber_train=0.1250 | 0.1s
+[2026-04-25 00:15:10][INFO]   iter 0001/0001 | loss_total=2.5066 ber_train=0.1094 loss_est=-79.4987
+[2026-04-25 00:15:10][INFO] Epoch 098/200 | loss_total=2.5066 | loss_rec=0.2369 | loss_wm=0.2263 | loss_nce=0.0063 | loss_vclub=0.0643 | loss_adv=9.3073 | ber_train=0.1094 | 0.1s
+[2026-04-25 00:15:10][INFO]   iter 0001/0001 | loss_total=2.3190 ber_train=0.1094 loss_est=-79.2831
+[2026-04-25 00:15:10][INFO] Epoch 099/200 | loss_total=2.3190 | loss_rec=0.1860 | loss_wm=0.2128 | loss_nce=0.0053 | loss_vclub=0.0449 | loss_adv=9.3160 | ber_train=0.1094 | 0.1s
+[2026-04-25 00:15:10][INFO]   iter 0001/0001 | loss_total=2.3859 ber_train=0.1250 loss_est=-79.5640
+[2026-04-25 00:15:11][INFO] Epoch 100/200 | loss_total=2.3859 | loss_rec=0.2041 | loss_wm=0.2177 | loss_nce=0.0048 | loss_vclub=0.0853 | loss_adv=9.3152 | ber_train=0.1250 | val_ber_clean=0.1094 | val_ber_attacked=0.1250 | 0.1s
+[2026-04-25 00:15:11][INFO]   iter 0001/0001 | loss_total=2.3017 ber_train=0.1250 loss_est=-79.6856
+[2026-04-25 00:15:11][INFO] Epoch 101/200 | loss_total=2.3017 | loss_rec=0.1937 | loss_wm=0.2104 | loss_nce=0.0044 | loss_vclub=0.0920 | loss_adv=9.3198 | ber_train=0.1250 | 0.1s
+[2026-04-25 00:15:12][INFO]   iter 0001/0001 | loss_total=2.3284 ber_train=0.1094 loss_est=-79.5260
+[2026-04-25 00:15:12][INFO] Epoch 102/200 | loss_total=2.3284 | loss_rec=0.2266 | loss_wm=0.2097 | loss_nce=0.0045 | loss_vclub=0.0588 | loss_adv=9.2951 | ber_train=0.1094 | 0.1s
+[2026-04-25 00:15:12][INFO]   iter 0001/0001 | loss_total=2.2971 ber_train=0.0938 loss_est=-79.5517
+[2026-04-25 00:15:12][INFO] Epoch 103/200 | loss_total=2.2971 | loss_rec=0.2108 | loss_wm=0.2082 | loss_nce=0.0047 | loss_vclub=0.0607 | loss_adv=9.3175 | ber_train=0.0938 | 0.1s
+[2026-04-25 00:15:12][INFO]   iter 0001/0001 | loss_total=2.2171 ber_train=0.0938 loss_est=-79.5789
+[2026-04-25 00:15:12][INFO] Epoch 104/200 | loss_total=2.2171 | loss_rec=0.2025 | loss_wm=0.2010 | loss_nce=0.0049 | loss_vclub=0.0216 | loss_adv=9.3071 | ber_train=0.0938 | 0.1s
+[2026-04-25 00:15:13][INFO]   iter 0001/0001 | loss_total=2.2110 ber_train=0.1250 loss_est=-79.4925
+[2026-04-25 00:15:13][INFO] Epoch 105/200 | loss_total=2.2110 | loss_rec=0.1941 | loss_wm=0.2012 | loss_nce=0.0049 | loss_vclub=0.0446 | loss_adv=9.3096 | ber_train=0.1250 | 0.1s
+[2026-04-25 00:15:13][INFO]   iter 0001/0001 | loss_total=2.1993 ber_train=0.1250 loss_est=-79.6407
+[2026-04-25 00:15:13][INFO] Epoch 106/200 | loss_total=2.1993 | loss_rec=0.1972 | loss_wm=0.1997 | loss_nce=0.0051 | loss_vclub=0.0859 | loss_adv=9.3120 | ber_train=0.1250 | 0.1s
+[2026-04-25 00:15:13][INFO]   iter 0001/0001 | loss_total=2.2716 ber_train=0.0938 loss_est=-79.6997
+[2026-04-25 00:15:13][INFO] Epoch 107/200 | loss_total=2.2716 | loss_rec=0.2115 | loss_wm=0.2055 | loss_nce=0.0051 | loss_vclub=0.0711 | loss_adv=9.3177 | ber_train=0.0938 | 0.1s
+[2026-04-25 00:15:14][INFO]   iter 0001/0001 | loss_total=2.1569 ber_train=0.0781 loss_est=-79.5298
+[2026-04-25 00:15:14][INFO] Epoch 108/200 | loss_total=2.1569 | loss_rec=0.2109 | loss_wm=0.1941 | loss_nce=0.0050 | loss_vclub=0.0591 | loss_adv=9.2952 | ber_train=0.0781 | 0.1s
+[2026-04-25 00:15:14][INFO]   iter 0001/0001 | loss_total=2.2874 ber_train=0.1094 loss_est=-79.4891
+[2026-04-25 00:15:14][INFO] Epoch 109/200 | loss_total=2.2874 | loss_rec=0.2185 | loss_wm=0.2064 | loss_nce=0.0049 | loss_vclub=0.0138 | loss_adv=9.3063 | ber_train=0.1094 | 0.1s
+[2026-04-25 00:15:14][INFO]   iter 0001/0001 | loss_total=2.1282 ber_train=0.1094 loss_est=-79.5702
+[2026-04-25 00:15:14][INFO] Epoch 110/200 | loss_total=2.1282 | loss_rec=0.2067 | loss_wm=0.1917 | loss_nce=0.0048 | loss_vclub=0.0590 | loss_adv=9.3108 | ber_train=0.1094 | val_ber_clean=0.0938 | val_ber_attacked=0.1250 | 0.1s
+[2026-04-25 00:15:15][INFO]   iter 0001/0001 | loss_total=2.0497 ber_train=0.1250 loss_est=-79.3877
+[2026-04-25 00:15:15][INFO] Epoch 111/200 | loss_total=2.0497 | loss_rec=0.2013 | loss_wm=0.1844 | loss_nce=0.0047 | loss_vclub=0.0778 | loss_adv=9.3120 | ber_train=0.1250 | 0.1s
+[2026-04-25 00:15:15][INFO]   iter 0001/0001 | loss_total=2.0961 ber_train=0.1094 loss_est=-79.3862
+[2026-04-25 00:15:15][INFO] Epoch 112/200 | loss_total=2.0961 | loss_rec=0.1974 | loss_wm=0.1894 | loss_nce=0.0046 | loss_vclub=0.0665 | loss_adv=9.3090 | ber_train=0.1094 | 0.1s
+[2026-04-25 00:15:15][INFO]   iter 0001/0001 | loss_total=2.1791 ber_train=0.1094 loss_est=-79.6471
+[2026-04-25 00:15:15][INFO] Epoch 113/200 | loss_total=2.1791 | loss_rec=0.2405 | loss_wm=0.1934 | loss_nce=0.0043 | loss_vclub=0.0199 | loss_adv=9.3177 | ber_train=0.1094 | 0.1s
+[2026-04-25 00:15:16][INFO]   iter 0001/0001 | loss_total=2.1518 ber_train=0.0938 loss_est=-79.5758
+[2026-04-25 00:15:16][INFO] Epoch 114/200 | loss_total=2.1518 | loss_rec=0.2228 | loss_wm=0.1925 | loss_nce=0.0041 | loss_vclub=0.0341 | loss_adv=9.3021 | ber_train=0.0938 | 0.1s
+[2026-04-25 00:15:16][INFO]   iter 0001/0001 | loss_total=2.0346 ber_train=0.1094 loss_est=-79.4870
+[2026-04-25 00:15:16][INFO] Epoch 115/200 | loss_total=2.0346 | loss_rec=0.2151 | loss_wm=0.1816 | loss_nce=0.0038 | loss_vclub=0.0383 | loss_adv=9.2948 | ber_train=0.1094 | 0.1s
+[2026-04-25 00:15:16][INFO]   iter 0001/0001 | loss_total=2.0731 ber_train=0.0938 loss_est=-79.5819
+[2026-04-25 00:15:16][INFO] Epoch 116/200 | loss_total=2.0731 | loss_rec=0.2356 | loss_wm=0.1834 | loss_nce=0.0036 | loss_vclub=0.0491 | loss_adv=9.3190 | ber_train=0.0938 | 0.1s
+[2026-04-25 00:15:17][INFO]   iter 0001/0001 | loss_total=1.9395 ber_train=0.0938 loss_est=-79.6926
+[2026-04-25 00:15:17][INFO] Epoch 117/200 | loss_total=1.9395 | loss_rec=0.2305 | loss_wm=0.1706 | loss_nce=0.0034 | loss_vclub=0.0708 | loss_adv=9.3061 | ber_train=0.0938 | 0.1s
+[2026-04-25 00:15:17][INFO]   iter 0001/0001 | loss_total=1.9548 ber_train=0.0938 loss_est=-79.7445
+[2026-04-25 00:15:17][INFO] Epoch 118/200 | loss_total=1.9548 | loss_rec=0.2098 | loss_wm=0.1742 | loss_nce=0.0033 | loss_vclub=0.0534 | loss_adv=9.3042 | ber_train=0.0938 | 0.1s
+[2026-04-25 00:15:17][INFO]   iter 0001/0001 | loss_total=1.9003 ber_train=0.1094 loss_est=-79.5328
+[2026-04-25 00:15:17][INFO] Epoch 119/200 | loss_total=1.9003 | loss_rec=0.1948 | loss_wm=0.1702 | loss_nce=0.0032 | loss_vclub=0.0422 | loss_adv=9.3016 | ber_train=0.1094 | 0.1s
+[2026-04-25 00:15:18][INFO]   iter 0001/0001 | loss_total=1.8337 ber_train=0.0938 loss_est=-79.5383
+[2026-04-25 00:15:18][INFO] Epoch 120/200 | loss_total=1.8337 | loss_rec=0.2197 | loss_wm=0.1611 | loss_nce=0.0031 | loss_vclub=0.0890 | loss_adv=9.3081 | ber_train=0.0938 | val_ber_clean=0.0781 | val_ber_attacked=0.0938 | 0.1s
+[2026-04-25 00:15:18][INFO]   iter 0001/0001 | loss_total=1.8637 ber_train=0.0781 loss_est=-79.7376
+[2026-04-25 00:15:18][INFO] Epoch 121/200 | loss_total=1.8637 | loss_rec=0.2356 | loss_wm=0.1625 | loss_nce=0.0030 | loss_vclub=0.0214 | loss_adv=9.3062 | ber_train=0.0781 | 0.1s
+[2026-04-25 00:15:19][INFO]   iter 0001/0001 | loss_total=1.9939 ber_train=0.1094 loss_est=-79.7015
+[2026-04-25 00:15:19][INFO] Epoch 122/200 | loss_total=1.9939 | loss_rec=0.2510 | loss_wm=0.1740 | loss_nce=0.0029 | loss_vclub=0.0919 | loss_adv=9.3030 | ber_train=0.1094 | 0.1s
+[2026-04-25 00:15:19][INFO]   iter 0001/0001 | loss_total=1.7899 ber_train=0.0781 loss_est=-79.7651
+[2026-04-25 00:15:19][INFO] Epoch 123/200 | loss_total=1.7899 | loss_rec=0.2163 | loss_wm=0.1571 | loss_nce=0.0028 | loss_vclub=0.1253 | loss_adv=9.3074 | ber_train=0.0781 | 0.1s
+[2026-04-25 00:15:19][INFO]   iter 0001/0001 | loss_total=1.6978 ber_train=0.0625 loss_est=-79.3596
+[2026-04-25 00:15:19][INFO] Epoch 124/200 | loss_total=1.6978 | loss_rec=0.1872 | loss_wm=0.1508 | loss_nce=0.0028 | loss_vclub=0.0286 | loss_adv=9.3203 | ber_train=0.0625 | 0.1s
+[2026-04-25 00:15:20][INFO]   iter 0001/0001 | loss_total=1.7931 ber_train=0.0625 loss_est=-79.7429
+[2026-04-25 00:15:20][INFO] Epoch 125/200 | loss_total=1.7931 | loss_rec=0.2256 | loss_wm=0.1565 | loss_nce=0.0027 | loss_vclub=0.0478 | loss_adv=9.3088 | ber_train=0.0625 | 0.1s
+[2026-04-25 00:15:20][INFO]   iter 0001/0001 | loss_total=1.7538 ber_train=0.0625 loss_est=-79.4570
+[2026-04-25 00:15:20][INFO] Epoch 126/200 | loss_total=1.7538 | loss_rec=0.2395 | loss_wm=0.1512 | loss_nce=0.0028 | loss_vclub=0.0277 | loss_adv=9.3151 | ber_train=0.0625 | 0.1s
+[2026-04-25 00:15:20][INFO]   iter 0001/0001 | loss_total=1.8207 ber_train=0.0625 loss_est=-79.3165
+[2026-04-25 00:15:20][INFO] Epoch 127/200 | loss_total=1.8207 | loss_rec=0.2374 | loss_wm=0.1580 | loss_nce=0.0028 | loss_vclub=0.0704 | loss_adv=9.3088 | ber_train=0.0625 | 0.1s
+[2026-04-25 00:15:21][INFO]   iter 0001/0001 | loss_total=1.6853 ber_train=0.0469 loss_est=-79.3561
+[2026-04-25 00:15:21][INFO] Epoch 128/200 | loss_total=1.6853 | loss_rec=0.2199 | loss_wm=0.1463 | loss_nce=0.0027 | loss_vclub=0.0858 | loss_adv=9.3251 | ber_train=0.0469 | 0.1s
+[2026-04-25 00:15:21][INFO]   iter 0001/0001 | loss_total=1.7612 ber_train=0.0781 loss_est=-79.5503
+[2026-04-25 00:15:21][INFO] Epoch 129/200 | loss_total=1.7612 | loss_rec=0.2448 | loss_wm=0.1514 | loss_nce=0.0025 | loss_vclub=0.0717 | loss_adv=9.3009 | ber_train=0.0781 | 0.1s
+[2026-04-25 00:15:21][INFO]   iter 0001/0001 | loss_total=1.6308 ber_train=0.0312 loss_est=-79.7028
+[2026-04-25 00:15:21][INFO] Epoch 130/200 | loss_total=1.6308 | loss_rec=0.2436 | loss_wm=0.1385 | loss_nce=0.0024 | loss_vclub=0.0438 | loss_adv=9.3033 | ber_train=0.0312 | val_ber_clean=0.0312 | val_ber_attacked=0.0312 | 0.1s
+[2026-04-25 00:15:22][INFO]   iter 0001/0001 | loss_total=1.6369 ber_train=0.0469 loss_est=-79.3990
+[2026-04-25 00:15:22][INFO] Epoch 131/200 | loss_total=1.6369 | loss_rec=0.2347 | loss_wm=0.1400 | loss_nce=0.0023 | loss_vclub=0.0427 | loss_adv=9.3095 | ber_train=0.0469 | 0.1s
+[2026-04-25 00:15:22][INFO]   iter 0001/0001 | loss_total=1.7221 ber_train=0.0312 loss_est=-79.5786
+[2026-04-25 00:15:22][INFO] Epoch 132/200 | loss_total=1.7221 | loss_rec=0.2463 | loss_wm=0.1474 | loss_nce=0.0023 | loss_vclub=0.0289 | loss_adv=9.3062 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:23][INFO]   iter 0001/0001 | loss_total=1.5555 ber_train=0.0312 loss_est=-79.2774
+[2026-04-25 00:15:23][INFO] Epoch 133/200 | loss_total=1.5555 | loss_rec=0.2303 | loss_wm=0.1323 | loss_nce=0.0022 | loss_vclub=0.0527 | loss_adv=9.3014 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:23][INFO]   iter 0001/0001 | loss_total=1.6623 ber_train=0.0312 loss_est=-79.6881
+[2026-04-25 00:15:23][INFO] Epoch 134/200 | loss_total=1.6623 | loss_rec=0.2933 | loss_wm=0.1367 | loss_nce=0.0021 | loss_vclub=0.0373 | loss_adv=9.3076 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:23][INFO]   iter 0001/0001 | loss_total=1.4601 ber_train=0.0312 loss_est=-79.5790
+[2026-04-25 00:15:23][INFO] Epoch 135/200 | loss_total=1.4601 | loss_rec=0.2556 | loss_wm=0.1202 | loss_nce=0.0021 | loss_vclub=0.0766 | loss_adv=9.3170 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:23][INFO]   iter 0001/0001 | loss_total=1.5829 ber_train=0.0469 loss_est=-79.7326
+[2026-04-25 00:15:23][INFO] Epoch 136/200 | loss_total=1.5829 | loss_rec=0.2399 | loss_wm=0.1341 | loss_nce=0.0021 | loss_vclub=0.0454 | loss_adv=9.3051 | ber_train=0.0469 | 0.1s
+[2026-04-25 00:15:24][INFO]   iter 0001/0001 | loss_total=1.5677 ber_train=0.0312 loss_est=-79.3230
+[2026-04-25 00:15:24][INFO] Epoch 137/200 | loss_total=1.5677 | loss_rec=0.2843 | loss_wm=0.1281 | loss_nce=0.0021 | loss_vclub=0.0847 | loss_adv=9.3022 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:24][INFO]   iter 0001/0001 | loss_total=1.4790 ber_train=0.0312 loss_est=-79.5361
+[2026-04-25 00:15:24][INFO] Epoch 138/200 | loss_total=1.4790 | loss_rec=0.3090 | loss_wm=0.1168 | loss_nce=0.0021 | loss_vclub=0.0953 | loss_adv=9.3054 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:24][INFO]   iter 0001/0001 | loss_total=1.5587 ber_train=0.0469 loss_est=-79.4478
+[2026-04-25 00:15:24][INFO] Epoch 139/200 | loss_total=1.5587 | loss_rec=0.2793 | loss_wm=0.1277 | loss_nce=0.0021 | loss_vclub=0.1190 | loss_adv=9.3011 | ber_train=0.0469 | 0.1s
+[2026-04-25 00:15:25][INFO]   iter 0001/0001 | loss_total=1.3793 ber_train=0.0312 loss_est=-79.7235
+[2026-04-25 00:15:25][INFO] Epoch 140/200 | loss_total=1.3793 | loss_rec=0.2633 | loss_wm=0.1114 | loss_nce=0.0021 | loss_vclub=0.0564 | loss_adv=9.3075 | ber_train=0.0312 | val_ber_clean=0.0312 | val_ber_attacked=0.0312 | 0.1s
+[2026-04-25 00:15:25][INFO]   iter 0001/0001 | loss_total=1.3356 ber_train=0.0312 loss_est=-79.4884
+[2026-04-25 00:15:25][INFO] Epoch 141/200 | loss_total=1.3356 | loss_rec=0.2345 | loss_wm=0.1099 | loss_nce=0.0022 | loss_vclub=0.0470 | loss_adv=9.3086 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:25][INFO]   iter 0001/0001 | loss_total=1.3740 ber_train=0.0312 loss_est=-79.5610
+[2026-04-25 00:15:25][INFO] Epoch 142/200 | loss_total=1.3740 | loss_rec=0.2273 | loss_wm=0.1145 | loss_nce=0.0022 | loss_vclub=0.0657 | loss_adv=9.2943 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:26][INFO]   iter 0001/0001 | loss_total=1.3059 ber_train=0.0312 loss_est=-79.6290
+[2026-04-25 00:15:26][INFO] Epoch 143/200 | loss_total=1.3059 | loss_rec=0.2344 | loss_wm=0.1069 | loss_nce=0.0023 | loss_vclub=0.0352 | loss_adv=9.3176 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:26][INFO]   iter 0001/0001 | loss_total=1.3415 ber_train=0.0312 loss_est=-79.3729
+[2026-04-25 00:15:26][INFO] Epoch 144/200 | loss_total=1.3415 | loss_rec=0.2525 | loss_wm=0.1087 | loss_nce=0.0025 | loss_vclub=0.0775 | loss_adv=9.3133 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:26][INFO]   iter 0001/0001 | loss_total=1.5175 ber_train=0.0312 loss_est=-79.2011
+[2026-04-25 00:15:26][INFO] Epoch 145/200 | loss_total=1.5175 | loss_rec=0.2383 | loss_wm=0.1277 | loss_nce=0.0027 | loss_vclub=0.1675 | loss_adv=9.3068 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:27][INFO]   iter 0001/0001 | loss_total=1.2866 ber_train=0.0312 loss_est=-79.4086
+[2026-04-25 00:15:27][INFO] Epoch 146/200 | loss_total=1.2866 | loss_rec=0.2128 | loss_wm=0.1071 | loss_nce=0.0029 | loss_vclub=0.0532 | loss_adv=9.3187 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:27][INFO]   iter 0001/0001 | loss_total=1.7461 ber_train=0.1094 loss_est=-79.6369
+[2026-04-25 00:15:27][INFO] Epoch 147/200 | loss_total=1.7461 | loss_rec=0.2454 | loss_wm=0.1498 | loss_nce=0.0031 | loss_vclub=0.0518 | loss_adv=9.3235 | ber_train=0.1094 | 0.1s
+[2026-04-25 00:15:27][INFO]   iter 0001/0001 | loss_total=1.2385 ber_train=0.0312 loss_est=-79.5864
+[2026-04-25 00:15:27][INFO] Epoch 148/200 | loss_total=1.2385 | loss_rec=0.2712 | loss_wm=0.0964 | loss_nce=0.0034 | loss_vclub=0.1220 | loss_adv=9.3180 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:28][INFO]   iter 0001/0001 | loss_total=1.4123 ber_train=0.0312 loss_est=-79.4507
+[2026-04-25 00:15:28][INFO] Epoch 149/200 | loss_total=1.4123 | loss_rec=0.2862 | loss_wm=0.1122 | loss_nce=0.0038 | loss_vclub=0.0439 | loss_adv=9.3214 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:28][INFO]   iter 0001/0001 | loss_total=1.6879 ber_train=0.0312 loss_est=-79.7159
+[2026-04-25 00:15:28][INFO] Epoch 150/200 | loss_total=1.6879 | loss_rec=0.2714 | loss_wm=0.1412 | loss_nce=0.0044 | loss_vclub=0.0776 | loss_adv=9.3303 | ber_train=0.0312 | val_ber_clean=0.0312 | val_ber_attacked=0.0312 | 0.1s
+[2026-04-25 00:15:29][INFO]   iter 0001/0001 | loss_total=1.2240 ber_train=0.0312 loss_est=-79.3762
+[2026-04-25 00:15:29][INFO] Epoch 151/200 | loss_total=1.2240 | loss_rec=0.2245 | loss_wm=0.0994 | loss_nce=0.0057 | loss_vclub=0.0651 | loss_adv=9.3358 | ber_train=0.0312 | 0.1s
+[2026-04-25 00:15:29][INFO]   iter 0001/0001 | loss_total=1.2605 ber_train=0.0312 loss_est=-79.5350
+[2026-04-25 00:15:29][INFO] Epoch 152/200 | loss_total=1.2605 | loss_rec=0.2491 | loss_wm=0.1003 | loss_nce=0.0083 | loss_vclub=0.0915 | loss_adv=9.3136 | ber_train=0.0312 | 0.1s

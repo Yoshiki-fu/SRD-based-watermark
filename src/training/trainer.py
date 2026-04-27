@@ -445,9 +445,9 @@ class VCWatermarkTrainer:
         loss_total = (
             self.lambda_rec   * loss_rec   +
             self.lambda_wm    * loss_wm    +
-            self.lambda_nce   * loss_nce   +
-            self.lambda_vclub * loss_vclub +
-            self.lambda_adv   * loss_adv
+            self.lambda_nce   * loss_nce   #+
+            #self.lambda_vclub * loss_vclub +
+            #self.lambda_adv   * loss_adv
         )
         self.optimizer_G.zero_grad()
         self.optimizer_D_adv.zero_grad()
